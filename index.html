@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil At Hand | Professional Civil Engineering Solutions</title>
+    <meta name="description" content="Civil At Hand: Professional Civil Engineering Solutions, Career guidance, Latest updates & expert resources for students and professionals.">
+    <meta name="keywords" content="Civil Engineering, SSC JE, GATE, Career, Updates, Material, Professional Solutions">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #205081;
+            --accent: #28a745;
+            --accent2: #007bff;
+            --accent3: #f8cc00;
+            --text-dark: #212529;
+            --card-bg: #fff;
+            --border: #dee2e6;
+            --shadow: 0 4px 16px rgba(0,0,0,0.10);
+            --transition-fast: .2s cubic-bezier(.4,0,.2,1);
+            --transition-medium: .4s cubic-bezier(.4,0,.2,1);
+            --update-gradient: linear-gradient(135deg, #e3efff 0%, #f9f9fc 100%);
+            --testimonial-bg: linear-gradient(135deg, #f8f9fa 0%, #e3f0fa 100%);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f8fa;
+            color: var(--text-dark);
+        }
+        @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+        @keyframes bounceIn {
+            0%{transform:scale(.9);opacity:0;}
+            60%{transform:scale(1.1);opacity:.85;}
+            100%{transform:scale(1);opacity:1;}
+        }
+        @keyframes truckMoveReal {
+            0% { left: -120px; }
+            100% { left: calc(100% + 20px); }
+        }
+        .fade-in {animation:fadeIn 1s;}
+        .bounce-in {animation:bounceIn .7s;}
+        #main-nav {
+            background:rgba(255,255,255,.98);
+            box-shadow:0 2px 12px rgba(0,0,0,.06);
+            backdrop-filter: blur(8px);
+            transition:box-shadow var(--transition-medium);
+        }
+        .nav-link-hover:hover {
+            color:var(--accent2); transform:translateY(-2px); transition:var(--transition-fast);
+        }
+        .mobile-menu-active{transform:translateX(0);}
+        .mobile-menu-deactive{transform:translateX(100%);}
+        #hero::before {
+            content:'';
+            position:absolute;top:0;right:0;bottom:0;left:0;
+            background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.10' fill-rule='evenodd'%3E%3Cpath d='M0 0h1v60H0V0zm30 0h1v60h-1V0zM0 30h60v1H0V30zM0 0h60v1H0V0z'/%3E%3C/g%3E%3C/svg%3E");
+            opacity:.18; z-index:0;
+        }
+        .banner-civil-anim {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            z-index: 1;
+            pointer-events: none;
+            width: 100%;
+            height: 90px;
+        }
+        .road {
+            position:absolute; left:0; right:0; bottom:18px; height:8px; background:repeating-linear-gradient(90deg,#4a6785 0 50px, #eee 50px 70px); border-radius:5px;
+        }
+        .truck-real {
+            position: absolute;
+            left: -120px;
+            bottom: 0;
+            z-index: 2;
+            animation: truckMoveReal 7s linear infinite;
+        }
+        .updates-card-professional {
+            border:1px solid var(--border);
+            background:var(--update-gradient);
+            box-shadow:var(--shadow);
+            transition:all var(--transition-medium);
+            position:relative;
+            overflow:hidden;
+        }
+        .updates-card-professional:hover {
+            transform:translateY(-5px) scale(1.02);
+            box-shadow:0 8px 32px rgba(0,123,255,.13);
+            border-color: var(--accent2);
+        }
+        .updates-icon {
+            position:absolute;top:20px;right:20px;font-size:2rem;color:var(--accent2);opacity:.18;
+        }
+        .testimonials-panel {
+            background: var(--testimonial-bg);
+            border-radius: 2rem;
+            box-shadow: 0 6px 32px rgba(40,167,69,.09), 0 1px 0 #e3f0fa;
+            padding: 4rem 2rem;
+            margin: 3rem auto 3rem auto;
+            max-width: 1200px;
+            transition: box-shadow 0.3s, background 0.3s;
+        }
+        .testimonial-card {
+            background: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 16px rgba(40,167,69,.07);
+            padding: 2rem;
+            transition: box-shadow var(--transition-medium), transform var(--transition-fast);
+            border: 2px solid #b9e2fc;
+            margin-bottom: 0;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-card:hover {
+            box-shadow:0 12px 48px rgba(40,167,69,.12);
+            border-color: var(--accent2);
+            transform:translateY(-3px) scale(1.03);
+        }
+        .testimonial-text {
+            color: #1b395e;
+            font-size: 1.15rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .testimonial-name {
+            color: var(--accent2);
+            font-weight: bold;
+            margin-top: .75rem;
+            font-size: 1.1rem;
+        }
+        .testimonial-role {
+            color: #6c757d;
+            font-size: 0.95rem;
+        }
+        #contact-us-panel {
+            background:var(--primary);
+            position:relative;
+            z-index:1;
+        }
+        #contact-us-panel::before {
+            content:'';
+            position:absolute;top:0;left:0;right:0;bottom:0;
+            background:linear-gradient(135deg,rgba(255,255,255,.09) 25%,transparent 25%) -10px 0,
+                linear-gradient(225deg,rgba(255,255,255,.09) 25%,transparent 25%) -10px 0,
+                linear-gradient(315deg,rgba(255,255,255,.09) 25%,transparent 25%) 0 0,
+                linear-gradient(45deg,rgba(255,255,255,.09) 25%,transparent 25%) 0 0;
+            background-size:20px 20px; opacity:.7; z-index:0;
+        }
+        .btn-secondary-custom {
+            background:var(--accent2);
+            transition:background .16s,transform .16s;
+        }
+        .btn-secondary-custom:hover {background:#0056b3;transform:scale(1.025);}
+        .pulse-btn {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(40,167,69,0.6); }
+            70% { box-shadow: 0 0 0 12px rgba(40,167,69,0); }
+            100% { box-shadow: 0 0 0 0 rgba(40,167,69,0); }
+        }
+        .modal-overlay {
+            background:rgba(0,51,102,.82);
+            backdrop-filter:blur(8px);
+            transition:opacity .4s;
+        }
+        .modal-content-custom {animation:bounceIn .5s;}
+        #footer-main {
+            background:#232a36;
+            color:#d1d5db;
+        }
+        .footer-socials a {
+            background: #fff;
+            color: #205081;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin-right: 0.5rem;
+            font-size: 1.4rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            transition: background .2s, color .2s, transform .2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-socials a::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #007bff77 0%, #28a74533 100%);
+            opacity: 0;
+            transition: opacity .3s;
+            z-index: 0;
+        }
+        .footer-socials a:hover::before {
+            opacity: 1;
+        }
+        .footer-socials a:hover {
+            background: var(--accent2);
+            color: #fff;
+            transform: scale(1.12);
+        }
+        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity .8s, transform .8s; }
+        .reveal-on-scroll.visible { opacity: 1; transform: none; }
+        .scroll-top-btn {
+            background: var(--accent2);
+            color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,123,255,.13);
+            padding: 1rem;
+            right: 2rem;
+            bottom: 5rem;
+            position: fixed;
+            opacity: 0;
+            transition: opacity .4s, transform .2s;
+            z-index: 50;
+        }
+        .scroll-top-btn.visible { opacity: 1; transform: scale(1.1);}
+        /* Page transition animation */
+        .page-transition {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, #003366 0%, #007bff 100%);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .page-transition .transition-logo {
+            font-size: 4rem;
+            color: #ffe066;
+            animation: bounceIn 1s;
+            text-shadow: 0 6px 24px #007bff44, 0 1px 0 #003366;
+        }
+        .animated-link {
+            position: relative;
+            transition: color .2s;
+        }
+        .animated-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 2px;
+            background: var(--accent2);
+            transform: scaleX(0);
+            transition: transform .3s cubic-bezier(.4,0,.2,1);
+        }
+        .animated-link:hover::after {
+            transform: scaleX(1);
+        }
+        /* FAQ Panel Enhanced Design */
+        .faq-panel-main {
+            background: linear-gradient(135deg, #e3efff 0%, #f9f9fc 100%);
+            border-radius: 2.5rem 2.5rem 0 0;
+            box-shadow: 0 -10px 36px rgba(0,123,255,0.16), 0 1.5px 0 #e3f0fa;
+            margin: 0 auto 0 auto;
+            padding: 5rem 2rem 3rem 2rem;
+            max-width: 1100px;
+            border: 2px solid #b9e2fc;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+        .faq-panel-main::before {
+            content: "";
+            position: absolute;
+            top: -60px; left: -80px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, #b9e2fc 0%, #e3efff 100%);
+            opacity: 0.18;
+            z-index: 0;
+            border-radius: 50%;
+        }
+        .faq-panel-main::after {
+            content: "";
+            position: absolute;
+            bottom: -80px; right: -90px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, #cbe4fa 0%, #f9f9fc 100%);
+            opacity: 0.13;
+            z-index: 0;
+            border-radius: 50%;
+        }
+        .faq-panel-main h2 {
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 12px #cbe4fa77;
+        }
+        .faq-list {
+            position: relative;
+            z-index: 1;
+        }
+        .faq-question {
+            cursor: pointer;
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--primary);
+            padding: 1.3rem 1.7rem 1.3rem 0.5rem;
+            background: #f7fbff;
+            border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 20px rgba(0,123,255,.08);
+            transition: background .2s, color .2s, box-shadow .2s;
+            position: relative;
+            border: 1.6px solid #b9e2fc;
+            display: flex;
+            align-items: center;
+        }
+        .faq-question:hover, .faq-question.open {
+            background: #e3f0fa;
+            color: var(--accent2);
+            box-shadow: 0 6px 28px rgba(0,123,255,.10);
+        }
+        .faq-question::after {
+            content: '\f078';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--accent2);
+            margin-left: auto;
+            margin-right: 1.1rem;
+            transition: transform .3s cubic-bezier(.4,0,.2,1);
+        }
+        .faq-question.open::after {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            background: #f8fcff;
+            border-radius: 0 0 1.2rem 1.2rem;
+            color: #15406a;
+            margin-top: -1.2rem;
+            margin-bottom: 2rem;
+            padding: 1.7rem 2.2rem 1.6rem 2.5rem;
+            font-size: 1.12rem;
+            font-weight: 500;
+            line-height: 1.7;
+            box-shadow: 0 2px 28px rgba(0,123,255,.07);
+            display: none;
+            border-left: 4px solid var(--accent2);
+            border-bottom: 1.3px solid #b9e2fc;
+            position: relative;
+        }
+        .faq-question.open + .faq-answer {
+            display: block;
+            animation: fadeIn .45s;
+        }
+        .faq-answer a {
+            color: var(--accent2);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .faq-panel-main {
+                padding: 2.5rem 0.7rem 2.2rem 0.7rem;
+                border-radius: 1.2rem 1.2rem 0 0;
+            }
+            .faq-question {
+                padding: 1rem 1.1rem 1rem 0.5rem;
+                font-size: 1.1rem;
+            }
+            .faq-answer {
+                padding: 1.2rem 1.1rem 1.2rem 1.2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Smooth page transition effect -->
+    <div id="pageTransition" class="page-transition">
+        <span class="transition-logo"><i class="fas fa-hard-hat"></i></span>
+    </div>
+    <!-- Navbar -->
+    <header>
+        <nav id="main-nav" class="py-4 px-6 md:px-12 rounded-b-xl sticky top-0 z-50">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="#" class="text-3xl font-extrabold tracking-tight text-gray-900 flex items-center">
+                    <!-- NEW LOGO IMAGE NEXT TO TITLE -->
+                    <img src="https://i.ibb.co/LqJcrJ0/Whats-App-Image-2025-08-08-at-12-30-42-PM.jpg"
+                         alt="Civil At Hand Logo"
+                         class="w-10 h-10 object-cover rounded-full mr-2"
+                         style="box-shadow:0 2px 8px rgba(0,123,255,.13);border:1.5px solid #cbe4fa;">
+                    <span class="text-[var(--primary)]">Civil At Hand</span>
+                </a>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Updates</a>
+                    <a href="https://sites.google.com/view/civilathandlive/other/notes" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Material</a>
+                    <a href="https://sites.google.com/view/civilathandlive/other/carrer" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Career</a>
+                    <a href="https://sites.google.com/view/civilathandlive/services" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Services</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-[var(--primary)]" aria-label="Open menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-300">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-[var(--primary)] focus:outline-none" aria-label="Close menu">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Updates</a>
+            <a href="https://sites.google.com/view/civilathandlive/other/notes" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Material</a>
+            <a href="https://sites.google.com/view/civilathandlive/other/carrer" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Career</a>
+            <a href="https://sites.google.com/view/civilathandlive/services" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Services</a>
+        </div>
+    </header>
+    <!-- Hero -->
+    <section id="hero" class="relative bg-gradient-to-br from-[var(--primary)] via-[var(--secondary)] to-[var(--accent2)] text-white py-20 md:py-40 px-6 md:px-12 text-center overflow-hidden rounded-b-xl shadow-xl">
+        <div class="container mx-auto relative z-10 fade-in">
+            <div class="mb-6">
+                <!-- Replace hero logo -->
+                <img src="https://i.ibb.co/LqJcrJ0/Whats-App-Image-2025-08-08-at-12-30-42-PM.jpg"
+                     alt="Civil At Hand Banner Logo"
+                     class="mx-auto drop-shadow-lg"
+                     style="width:150px;height:150px;object-fit:cover;border-radius:30px;box-shadow:0 4px 16px rgba(0,123,255,.13);border:1.5px solid #cbe4fa;">
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 bounce-in">
+                Civil At Hand
+            </h1>
+            <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 fade-in">
+                Professional Civil Engineering Solutions & Insights
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mt-8">
+                <a href="https://forms.gle/qpMWJPeomKtn4sLC9" target="_blank" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--primary)] px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all pulse-btn">
+                    Get a Quote
+                </a>
+            </div>
+        </div>
+        <!-- Realistic Truck Animation at bottom -->
+        <div class="banner-civil-anim">
+            <div class="road"></div>
+            <svg class="truck-real" width="100" height="40" viewBox="0 0 100 40">
+                <rect x="10" y="16" width="50" height="16" rx="4" fill="#205081"/>
+                <rect x="60" y="10" width="28" height="22" rx="4" fill="#f8cc00"/>
+                <rect x="23" y="22" width="14" height="8" rx="2" fill="#fff"/>
+                <rect x="66" y="16" width="10" height="8" rx="2" fill="#fff"/>
+                <circle cx="23" cy="34" r="6" fill="#222"/>
+                <circle cx="70" cy="34" r="6" fill="#444"/>
+                <circle cx="23" cy="34" r="2.5" fill="#aaa"/>
+                <circle cx="70" cy="34" r="2.5" fill="#aaa"/>
+                <ellipse cx="88" cy="24" rx="3" ry="2" fill="#ffe066"/>
+            </svg>
+        </div>
+    </section>
+    <!-- Updates Section -->
+    <main>
+        <section id="updates" class="py-16 md:py-24 px-6 md:px-12 reveal-on-scroll">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-16 text-[var(--primary)]">Latest Civil Engg Updates</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="p-8 rounded-2xl shadow-xl updates-card-professional" aria-label="SSC JE 2025 New Notification">
+                        <i class="fas fa-bullhorn updates-icon"></i>
+                        <h3 class="text-2xl font-bold mb-3 text-[var(--primary)]">SSC JE 2025 Notification</h3>
+                        <p class="text-gray-700">Staff Selection Commission released the notification for Junior Engineer 2025. Stay updated on eligibility and key dates.</p>
+                        <span class="inline-block mt-4 text-[var(--accent2)] font-semibold">Read More &rarr;</span>
+                    </a>
+                    <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="p-8 rounded-2xl shadow-xl updates-card-professional" aria-label="GATE 2026 Application Forms">
+                        <i class="fas fa-file-alt updates-icon"></i>
+                        <h3 class="text-2xl font-bold mb-3 text-[var(--primary)]">GATE 2026 Applications</h3>
+                        <p class="text-gray-700">Application window for GATE 2026 is open. Find details, dates, and links to apply on our portal.</p>
+                        <span class="inline-block mt-4 text-[var(--accent2)] font-semibold">Read More &rarr;</span>
+                    </a>
+                    <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="p-8 rounded-2xl shadow-xl updates-card-professional" aria-label="RRB JE Result 2025">
+                        <i class="fas fa-check-double updates-icon"></i>
+                        <h3 class="text-2xl font-bold mb-3 text-[var(--primary)]">RRB JE Result 2025</h3>
+                        <p class="text-gray-700">Railway Recruitment Board has announced the results for Junior Engineer 2025. Check your result and cutoff here.</p>
+                        <span class="inline-block mt-4 text-[var(--accent2)] font-semibold">Read More &rarr;</span>
+                    </a>
+                    <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="p-8 rounded-2xl shadow-xl updates-card-professional" aria-label="Job & Internship Opportunities">
+                        <i class="fas fa-briefcase updates-icon"></i>
+                        <h3 class="text-2xl font-bold mb-3 text-[var(--primary)]">Jobs & Internships</h3>
+                        <p class="text-gray-700">Check the latest openings and internships in the civil engineering sector. Career boost awaits!</p>
+                        <span class="inline-block mt-4 text-[var(--accent2)] font-semibold">Read More &rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section (NEW) -->
+        <section class="testimonials-panel reveal-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-10 text-center text-[var(--accent2)]">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <p class="testimonial-text mb-4">“Civil At Hand platform really helped us in getting industry updates and exam notifications at the right time. Highly recommend to all civil aspirants!”</p>
+                    <div class="testimonial-name">Deepak Kumar</div>
+                    <div class="testimonial-role">GATE Aspirant</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text mb-4">“I found the notes and interview tips section extremely useful. The user-friendly website made my preparation journey easy and smooth.”</p>
+                    <div class="testimonial-name">Ritika Sharma</div>
+                    <div class="testimonial-role">SSC JE Qualified</div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text mb-4">“The support from Civil At Hand was prompt and very helpful for my project queries. Their dedication to the civil engineering community is commendable!”</p>
+                    <div class="testimonial-name">Pranav Joshi</div>
+                    <div class="testimonial-role">Site Engineer</div>
+                </div>
+            </div>
+        </section>
+        <section id="contact-us-panel" class="py-16 md:py-24 px-6 md:px-12 text-center text-white rounded-t-xl shadow-xl reveal-on-scroll">
+            <div class="container mx-auto relative z-10">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-8 drop-shadow-lg">Have a Project in Mind?</h2>
+                <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto opacity-90">
+                    Ready to collaborate on your next civil engineering challenge. Fill out the form for a quote or discuss your needs with experts.
+                </p>
+                <a href="https://forms.gle/qpMWJPeomKtn4sLC9" target="_blank" class="btn-secondary-custom pulse-btn text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg">
+                    Get in Touch
+                </a>
+            </div>
+        </section>
+        <!-- FAQ Panel -->
+        <section class="faq-panel-main reveal-on-scroll">
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-10 text-center text-[var(--primary)]">
+                Frequently Asked Questions
+            </h2>
+            <div class="faq-list max-w-3xl mx-auto">
+                <div>
+                    <div class="faq-question">How can Civil At Hand help me in my civil engineering journey?</div>
+                    <div class="faq-answer">Civil At Hand provides the latest updates on exams, results, and jobs, along with curated study materials and career guidance. Our platform is designed to support both students and professionals with reliable resources and expert assistance.</div>
+                </div>
+                <div>
+                    <div class="faq-question">How do I access study material and updates on the website?</div>
+                    <div class="faq-answer">Simply visit our <a href="https://sites.google.com/view/civilathandlive/other/notes" target="_blank">Material</a> and <a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank">Updates</a> sections for the latest content, notes, and notifications. All resources are regularly updated for your convenience.</div>
+                </div>
+                <div>
+                    <div class="faq-question">How can I contact Civil At Hand for support or project collaboration?</div>
+                    <div class="faq-answer">You can fill our <a href="https://forms.gle/qpMWJPeomKtn4sLC9" target="_blank">Get a Quote</a> form or email us directly at <a href="mailto:civilathandofficial@gmail.com">civilathandofficial@gmail.com</a>. We respond quickly to all queries and project requests.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer-main" class="text-gray-300 pt-10 px-6 md:px-12 rounded-t-xl shadow-inner">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Civil At Hand</h3>
+                    <p class="text-gray-400">Professional Civil Engineering Solutions & Insights.</p>
+                    <div class="mt-4">
+                        <a href="mailto:civil.nikhilsain@gmail.com" class="hover:text-white transition-colors flex items-center justify-center md:justify-start">
+                            <i class="fas fa-envelope mr-2"></i>
+                            civilathandofficial@gmail.com
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <h3 class="text-xl font-semibold text-white mb-4">Useful Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://sites.google.com/view/civilathandlive/other/updates" target="_blank" class="hover:text-white transition-colors animated-link">Updates</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/other/notes" target="_blank" class="hover:text-white transition-colors animated-link">Material</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/other/carrer" target="_blank" class="hover:text-white transition-colors animated-link">Career</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/services" target="_blank" class="hover:text-white transition-colors animated-link">Services</a></li>
+                    </ul>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <h3 class="text-xl font-semibold text-white mb-4">Legal & Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://sites.google.com/view/civilathandlive/about/tc" target="_blank" class="hover:text-white transition-colors animated-link">Terms & Conditions</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/about/contact-us" target="_blank" class="hover:text-white transition-colors animated-link">Privacy Policy</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/about/disclamers" target="_blank" class="hover:text-white transition-colors animated-link">Disclaimer</a></li>
+                        <li><a href="https://sites.google.com/view/civilathandlive/about/about-us" target="_blank" class="hover:text-white transition-colors animated-link">About Us</a></li>
+                    </ul>
+                    <div class="footer-socials mt-8 flex justify-center md:justify-start">
+                        <a href="https://instagram.com/civilathand" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/civilathand" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.youtube.com/@CivilAtHand" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://whatsapp.com/channel/0029Va9E3Bo1YFQc2n6w4c2Z" target="_blank" aria-label="WhatsApp Channel"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-lg">© 2025 Civil At Hand. All rights reserved.</p>
+                <p class="text-sm text-gray-500 mt-2">Managed and developed by Nikhil Sain</p>
+            </div>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+        }
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        closeMobileMenu.addEventListener('click', toggleMobileMenu);
+
+        // Scroll to Top Button
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('scrollTopBtn');
+            if(window.scrollY > 300) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+        });
+        document.getElementById('scrollTopBtn').addEventListener('click', function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Section Reveal Animation
+        function revealSections() {
+            document.querySelectorAll('.reveal-on-scroll').forEach(el=>{
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight-50) el.classList.add('visible');
+            });
+        }
+        document.addEventListener('scroll', revealSections);
+        document.addEventListener('DOMContentLoaded', revealSections);
+        window.addEventListener('resize', revealSections);
+
+        // Responsive truck animation (road width adapts)
+        function updateTruckAnimation() {
+            var truck = document.querySelector('.truck-real');
+            var banner = document.querySelector('.banner-civil-anim');
+            if(truck && banner) {
+                truck.style.animationDuration = Math.max(7, banner.offsetWidth/100) + 's';
+            }
+        }
+        window.addEventListener('resize', updateTruckAnimation);
+        document.addEventListener('DOMContentLoaded', updateTruckAnimation);
+
+        // Accessibility improvement for all animated links
+        document.querySelectorAll('.animated-link').forEach(link => {
+            link.addEventListener('keydown', function(e) {
+                if(e.key === 'Enter' || e.key === ' ') {
+                    link.click();
+                }
+            });
+        });
+
+        // FAQ Panel Toggle
+        document.querySelectorAll('.faq-question').forEach(function(q) {
+            q.addEventListener('click', function() {
+                if(q.classList.contains('open')) {
+                    q.classList.remove('open');
+                } else {
+                    document.querySelectorAll('.faq-question').forEach(el=>el.classList.remove('open'));
+                    q.classList.add('open');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
