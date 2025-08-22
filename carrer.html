@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Civil Engineering Career Options</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #234567;
+      --secondary: #009688;
+      --secondary-dark: #00675b;
+      --accent: #ffb703;
+      --background: #f4f6fb;
+      --white: #fff;
+      --gray: #8c9aad;
+      --radius: 15px;
+      --shadow: 0 8px 32px 0 rgba(35,69,103,0.09);
+      --transition: .22s cubic-bezier(.62,.05,.36,.99);
+      --font-main: 'Roboto', 'Montserrat', sans-serif;
+      --font-header: 'Montserrat', 'Roboto', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: var(--background);
+      font-family: var(--font-main);
+      color: var(--primary);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 44px auto 0 auto;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 38px 24px 38px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    header {
+      margin-bottom: 36px;
+      text-align: center;
+      position: relative;
+    }
+    .header-icon {
+      font-size: 2.6rem;
+      color: var(--secondary);
+      margin-bottom: 9px;
+      animation: float 1.8s infinite alternate cubic-bezier(.67,1.5,.33,1.1);
+      display: block;
+      filter: drop-shadow(0 3px 9px #00968835);
+    }
+    @keyframes float {
+      from { transform: translateY(0);}
+      to { transform: translateY(-10px);}
+    }
+    h1 {
+      font-family: var(--font-header);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 0 0 10px 0;
+      letter-spacing: 1.2px;
+      line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 1.12rem;
+      color: var(--gray);
+      margin-bottom: 18px;
+      letter-spacing: .25px;
+      line-height: 1.57;
+      font-weight: 500;
+    }
+    /* Search Bar Styling */
+    #searchContainer {
+      margin: 0 auto 24px auto;
+      text-align: center;
+    }
+    #searchInput {
+      width: 92%;
+      max-width: 400px;
+      padding: 12px 16px;
+      font-size: 1.05rem;
+      border: 2px solid #e0e5ef;
+      border-radius: 23px;
+      background: #fafdff;
+      transition: border-color .3s, box-shadow .3s;
+      margin-bottom: 0;
+      color: var(--primary);
+    }
+    #searchInput:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 10px 0 #00968825;
+      outline: none;
+    }
+    /* Animated Marquee */
+    .marquee-bar {
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 120%);
+      color: #fff;
+      padding: 9px 0;
+      margin: 0 0 20px 0;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 8px #23456712;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: .6px;
+      position: relative;
+      z-index: 1;
+      user-select: none;
+    }
+    .marquee-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: marquee 17s linear infinite;
+      font-family: var(--font-main);
+      font-size: 1.05rem;
+      padding-left: 100%;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0);}
+      100% { transform: translateX(-100%);}
+    }
+    /* Grid & Card Styling */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 14px;
+    }
+    .card {
+      background: linear-gradient(135deg, #fafdff 74%, #f7f8fc 100%);
+      border-radius: var(--radius);
+      padding: 25px 18px 20px 18px;
+      box-shadow: 0 2px 12px 0 rgba(35,69,103,0.06);
+      border: 1.5px solid #e6eaf2;
+      border-top: 6px solid var(--primary);
+      transition: transform var(--transition), box-shadow var(--transition), border-top .2s, background .2s;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-7px) scale(1.035);
+      box-shadow: 0 11px 28px 0 rgba(0,150,136,0.15);
+      border-top: 6px solid var(--accent);
+      background: linear-gradient(135deg, #fafdff 80%, #fffbe0 100%);
+      z-index: 2;
+    }
+    .card:after {
+      content: "";
+      position: absolute;
+      left: -50%;
+      top: -90px;
+      width: 200%;
+      height: 70px;
+      background: linear-gradient(90deg, #009688 0%, #ffb703 100%);
+      opacity: 0.08;
+      transform: rotate(-7deg);
+      z-index: 0;
+    }
+    .card a, .card .gate-link {
+      text-decoration: none;
+      color: var(--primary);
+      font-size: 1.17rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      transition: color .17s;
+      min-height: 65px;
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-header);
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+    .card a:hover, .card .gate-link:hover {
+      color: var(--secondary-dark);
+    }
+    .card .card-icon {
+      font-size: 2.0rem;
+      margin-bottom: 7px;
+      color: var(--primary);
+      transition: color .2s, filter .2s;
+      filter: drop-shadow(0 4px 8px #00968825);
+      animation: pulseIcon 1.1s infinite alternate;
+    }
+    .card:hover .card-icon {
+      color: var(--accent);
+      filter: drop-shadow(0 6px 12px #ffb70350);
+      animation: none;
+    }
+    @keyframes pulseIcon {
+      from { transform: scale(1);}
+      to { transform: scale(1.12);}
+    }
+    /* Info Button Floating */
+    .info-fab {
+      position: fixed;
+      bottom: 34px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      box-shadow: 0 2px 14px #23456723;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      cursor: pointer;
+      z-index: 40;
+      transition: background .23s, transform .18s;
+      outline: none;
+    }
+    .info-fab:hover, .info-fab:focus {
+      background: linear-gradient(135deg, var(--accent), var(--secondary));
+      color: var(--primary);
+      transform: scale(1.09);
+    }
+    .info-popup, .coming-soon-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 36px;
+      background: var(--white);
+      color: var(--primary);
+      padding: 19px 22px 17px 22px;
+      border-radius: 11px;
+      box-shadow: 0 8px 28px #23456714;
+      font-size: 1.03rem;
+      z-index: 100;
+      min-width: 200px;
+      max-width: 310px;
+      animation: popupIn .38s;
+    }
+    @keyframes popupIn {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .info-popup.visible, .coming-soon-popup.visible {
+      display: block;
+    }
+    .info-popup-close, .coming-soon-popup-close {
+      position: absolute;
+      top: 7px;
+      right: 13px;
+      font-size: 1.1rem;
+      color: #b7b7b7;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .coming-soon-title {
+      font-weight: 700;
+      color: var(--secondary-dark);
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .coming-soon-desc {
+      color: #8c9aad;
+      margin-top: 2px;
+    }
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: #a2a9b6;
+      margin-top: 30px;
+      font-size: 1rem;
+      letter-spacing: .5px;
+      padding-bottom: 6px;
+    }
+    /* Responsive */
+    @media (max-width: 650px) {
+      h1 { font-size: 1.18rem; }
+      .container { padding: 6vw 2vw 7vw 2vw;}
+      #searchInput { font-size: .99rem;}
+      .card a, .card .gate-link { font-size: 1.01rem;}
+      .subtitle { font-size: .93rem;}
+      .info-popup, .coming-soon-popup { min-width: 125px; max-width: 92vw; padding: 9px 6px;}
+    }
+    @media (max-width: 420px) {
+      .container { padding: 2vw;}
+      .card { padding: 10px 5px 8px 5px;}
+      .info-fab {
+        bottom: 13px;
+        right: 10px;
+        width: 35px; height: 35px;
+        font-size: 1.01rem;
+      }
+      .footer { font-size: .91rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="header-icon"><i class="fas fa-hard-hat"></i></span>
+      <h1>Explore Civil Engineering Career Options</h1>
+      <p class="subtitle">
+        Discover top exams and opportunities for civil engineers.<br>
+        Click any path below to unlock detailed guides on eligibility, syllabus, documents, and career scope.
+      </p>
+    </header>
+    <!-- Marquee Bar -->
+    <div class="marquee-bar">
+      <div class="marquee-content" id="marqueeText">
+        GATE 2026 | IES (ESE) | PSU Recruitment | SSC JE | RRB JE | JEE Main & Advanced | ISRO/DRDO | State JE | Tech Startups | Discover your civil engineering path!
+      </div>
+    </div>
+    <div id="searchContainer">
+      <input type="text" id="searchInput" placeholder="Search for a career or exam..." onkeyup="filterCards()">
+    </div>
+    <div class="grid-container" id="careerGrid">
+      <!-- GATE 2026: only box with link -->
+      <div class="card">
+        <a class="gate-link" href="https://civilathandofficial.blogspot.com/2025/08/gate-2026.html" target="_blank">
+          <span class="card-icon"><i class="fas fa-certificate"></i></span>
+          GATE 2026 (Latest Updates)
+        </a>
+      </div>
+      <!-- Other cards: all trigger coming soon popup -->
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-landmark"></i></span>
+          Indian Engineering Services (IES)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-building"></i></span>
+          SSC Junior Engineer (JE)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-train"></i></span>
+          RRB Junior Engineer (JE)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-graduation-cap"></i></span>
+          JEE Main &amp; Advanced (B.Tech Admissions)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-road"></i></span>
+          HSSC Junior Engineer (Haryana)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-draw-polygon"></i></span>
+          RPSC Junior Engineer (Rajasthan)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-satellite"></i></span>
+          ISRO Scientist/Engineer
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-microscope"></i></span>
+          DRDO Scientist/Engineer
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-industry"></i></span>
+          PSU Recruitment (Civil)
+        </button>
+      </div>
+      <div class="card">
+        <button class="gate-link" onclick="showComingSoon(event)">
+          <span class="card-icon"><i class="fas fa-lightbulb"></i></span>
+          Tech Startups &amp; Private Sector
+        </button>
+      </div>
+    </div>
+    <div class="footer">
+      © 2025 Civil Engineering Career Discovery. All rights reserved.
+    </div>
+    <!-- Info Floating Button -->
+    <button class="info-fab" onclick="toggleInfoPopup()" aria-label="How to use">
+      <i class="fas fa-info"></i>
+    </button>
+    <div class="info-popup" id="infoPopup">
+      <button class="info-popup-close" onclick="toggleInfoPopup()" aria-label="Close info">&times;</button>
+      <b>How to Use:</b><br>
+      <ul style="text-align:left; margin: 12px 0 0 6px; padding-left: 18px;">
+        <li>Use the <b>search bar</b> to quickly find career/exam options.</li>
+        <li>Click on <b>GATE 2026</b> for latest updates.</li>
+        <li>Other options are marked <b>Coming Soon</b>.</li>
+        <li>Hover cards for highlights & animation.</li>
+        <li>See the <b>marquee</b> for trending paths.</li>
+      </ul>
+    </div>
+    <div class="coming-soon-popup" id="comingSoonPopup">
+      <button class="coming-soon-popup-close" onclick="closeComingSoon()" aria-label="Close">&times;</button>
+      <div class="coming-soon-title">
+        <i class="fas fa-tools"></i> Coming Soon
+      </div>
+      <div class="coming-soon-desc">
+        Detailed info for this exam/career is being prepared.<br>
+        Stay tuned!
+      </div>
+    </div>
+  </div>
+  <script>
+    // Animated Marquee Messages
+    const marqueeMessages = [
+      "GATE 2026 | IES (ESE) | PSU Recruitment | SSC JE | RRB JE | JEE Main & Advanced | ISRO/DRDO | State JE | Tech Startups | Discover your civil engineering path!",
+      "Click GATE 2026 for latest updates. Other options are Coming Soon.",
+      "All major civil engineering exams and opportunities in one place!",
+      "Search, discover, and unlock the best future in Civil Engineering. Start your journey today!"
+    ];
+    let marqueeIdx = 0;
+    function updateMarquee() {
+      document.getElementById("marqueeText").innerText = marqueeMessages[marqueeIdx];
+      marqueeIdx = (marqueeIdx + 1) % marqueeMessages.length;
+    }
+    setInterval(updateMarquee, 12000);
+
+    // Info Popup
+    function toggleInfoPopup() {
+      const popup = document.getElementById('infoPopup');
+      popup.classList.toggle('visible');
+    }
+    // Close info popup when clicking outside
+    window.addEventListener('click', function(e) {
+      const popup = document.getElementById('infoPopup');
+      const fab = document.querySelector('.info-fab');
+      if (popup.classList.contains('visible') && !popup.contains(e.target) && !fab.contains(e.target)) {
+        popup.classList.remove('visible');
+      }
+      const csp = document.getElementById('comingSoonPopup');
+      if (csp.classList.contains('visible') && !csp.contains(e.target)) {
+        csp.classList.remove('visible');
+      }
+    });
+
+    // Coming Soon Popup
+    function showComingSoon(event) {
+      event.preventDefault();
+      const popup = document.getElementById('comingSoonPopup');
+      popup.classList.add('visible');
+      // Auto close after 2.5 seconds for better UX on mobile
+      setTimeout(() => {
+        popup.classList.remove('visible');
+      }, 2500);
+    }
+    function closeComingSoon() {
+      document.getElementById('comingSoonPopup').classList.remove('visible');
+    }
+
+    // Search filter
+    function filterCards() {
+      var input = document.getElementById('searchInput');
+      var filter = input.value.toUpperCase();
+      var cards = document.querySelectorAll('.grid-container .card');
+      cards.forEach(function(card) {
+        var text = card.textContent || card.innerText;
+        card.style.display = text.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+      });
+    }
+    // Keyboard shortcut: '/' or 's' to focus search
+    window.addEventListener('keydown', function(e) {
+      if ((e.key === '/' || e.key === 's' || e.key === 'S') && document.activeElement.tagName !== 'INPUT' && !document.getElementById('infoPopup').classList.contains('visible')) {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+      }
+    });
+  </script>
+</body>
+</html>
