@@ -1,1 +1,439 @@
-about disclamer contact us privacy policy 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Information - Civil At Hand</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.2em;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            padding: 12px 25px;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            color: #2d3748;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+        }
+
+        .content-section h3 {
+            color: #4a5568;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .content-section p, .content-section li {
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #4a5568;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .footer p {
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .navigation { flex-direction: column; align-items: center; }
+            .content-section { padding: 25px; }
+            .container { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Civil At Hand</h1>
+            <p>Your trusted partner for civil services and legal information</p>
+        </div>
+
+        <div class="navigation">
+            <a href="#" class="nav-btn" onclick="showSection('about')">About Us</a>
+            <a href="#" class="nav-btn" onclick="showSection('disclaimer')">Disclaimer</a>
+            <a href="#" class="nav-btn" onclick="showSection('privacy')">Privacy Policy</a>
+            <a href="#" class="nav-btn" onclick="showSection('terms')">Terms of Service</a>
+            <a href="#" class="nav-btn" onclick="showSection('contact')">Contact Us</a>
+        </div>
+
+        <!-- About Us Section -->
+        <div id="about" class="content-section active">
+            <h2 class="section-title">About Civil At Hand</h2>
+            <p>Welcome to Civil At Hand, your comprehensive resource for civil services information, legal guidance, and administrative support. We are dedicated to making civil procedures accessible and understandable for everyone.</p>
+            
+            <h3>Our Mission</h3>
+            <p>Our mission is to bridge the gap between citizens and civil services by providing clear, accurate, and up-to-date information about various governmental procedures, legal requirements, and administrative processes. We believe that every individual deserves access to reliable information that can help them navigate the complexities of civil administration.</p>
+
+            <h3>What We Offer</h3>
+            <p>At Civil At Hand, we provide:</p>
+            <ul>
+                <li>Comprehensive guides on civil service procedures</li>
+                <li>Step-by-step instructions for government applications</li>
+                <li>Legal information and documentation assistance</li>
+                <li>Updates on policy changes and new regulations</li>
+                <li>Expert advice on administrative matters</li>
+                <li>Resource directories for government services</li>
+            </ul>
+
+            <h3>Our Commitment</h3>
+            <p>We are committed to maintaining the highest standards of accuracy and reliability in all our content. Our team works diligently to ensure that the information we provide is current, relevant, and helpful to our users. We understand the importance of having access to correct information when dealing with civil matters.</p>
+
+            <div class="highlight-box">
+                <h4>Why Choose Civil At Hand?</h4>
+                <p>We combine expertise with accessibility, ensuring that complex civil procedures are explained in simple, understandable terms.</p>
+            </div>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div id="disclaimer" class="content-section">
+            <h2 class="section-title">Disclaimer</h2>
+            
+            <h3>General Information Purpose</h3>
+            <p>The information provided on Civil At Hand website is for general informational purposes only. While we strive to keep the information up-to-date and accurate, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained on the website.</p>
+
+            <h3>Professional Advice</h3>
+            <p>The content on this website should not be considered as professional legal, financial, or administrative advice. Users are strongly advised to consult with qualified professionals or relevant government authorities before making any decisions based on the information provided on this website.</p>
+
+            <h3>Limitation of Liability</h3>
+            <p>Civil At Hand shall not be liable for any loss or damage, including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+
+            <h3>External Links</h3>
+            <p>Our website may contain links to external websites that are not provided or maintained by us. We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.</p>
+
+            <h3>Content Updates</h3>
+            <p>We reserve the right to modify, update, or remove any content on this website without prior notice. Government policies and procedures may change frequently, and while we strive to keep our content current, there may be delays in reflecting such changes.</p>
+
+            <div class="highlight-box">
+                <h4>Important Notice</h4>
+                <p>Always verify information with official government sources before taking any action based on the content provided on this website.</p>
+            </div>
+        </div>
+
+        <!-- Privacy Policy Section -->
+        <div id="privacy" class="content-section">
+            <h2 class="section-title">Privacy Policy</h2>
+            
+            <h3>Information We Collect</h3>
+            <p>At Civil At Hand, we respect your privacy and are committed to protecting your personal information. We may collect the following types of information:</p>
+            <ul>
+                <li>Personal identification information (name, email address, phone number)</li>
+                <li>Usage data and website analytics</li>
+                <li>Cookies and similar tracking technologies</li>
+                <li>Information you voluntarily provide through contact forms</li>
+            </ul>
+
+            <h3>How We Use Your Information</h3>
+            <p>We use the collected information for the following purposes:</p>
+            <ul>
+                <li>To provide and maintain our services</li>
+                <li>To improve user experience on our website</li>
+                <li>To respond to your inquiries and provide customer support</li>
+                <li>To send periodic emails with updates and information</li>
+                <li>To analyze website usage and optimize our content</li>
+            </ul>
+
+            <h3>Data Protection</h3>
+            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.</p>
+
+            <h3>Third-Party Services</h3>
+            <p>We may use third-party services such as Google Analytics to analyze website usage. These services may collect information sent by your browser as part of a web page request.</p>
+
+            <h3>Cookies Policy</h3>
+            <p>Our website uses cookies to enhance user experience. You can choose to disable cookies through your browser settings, though this may affect website functionality.</p>
+
+            <h3>Your Rights</h3>
+            <p>You have the right to access, update, or delete your personal information. You may also opt-out of receiving promotional communications from us at any time.</p>
+
+            <div class="contact-info">
+                <h4>Privacy Concerns?</h4>
+                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                <p><strong>civilathandofficial@gmail.com</strong></p>
+            </div>
+        </div>
+
+        <!-- Terms of Service Section -->
+        <div id="terms" class="content-section">
+            <h2 class="section-title">Terms of Service</h2>
+            
+            <h3>Acceptance of Terms</h3>
+            <p>By accessing and using the Civil At Hand website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this service.</p>
+
+            <h3>Use License</h3>
+            <p>Permission is granted to temporarily download one copy of the materials on Civil At Hand website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+            <ul>
+                <li>Modify or copy the materials</li>
+                <li>Use the materials for any commercial purpose or for any public display</li>
+                <li>Attempt to reverse engineer any software contained on the website</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
+            </ul>
+
+            <h3>User Conduct</h3>
+            <p>Users agree to use the website only for lawful purposes and in a way that does not infringe the rights of others or restrict their use and enjoyment of the website. Prohibited behavior includes:</p>
+            <ul>
+                <li>Harassing or causing distress to any other user</li>
+                <li>Transmitting obscene or offensive content</li>
+                <li>Disrupting the normal flow of dialogue on the website</li>
+                <li>Attempting to gain unauthorized access to our systems</li>
+            </ul>
+
+            <h3>Content Accuracy</h3>
+            <p>While we strive to provide accurate and up-to-date information, Civil At Hand makes no warranties, expressed or implied, and hereby disclaims all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.</p>
+
+            <h3>Modifications</h3>
+            <p>Civil At Hand may revise these terms of service at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.</p>
+
+            <h3>Governing Law</h3>
+            <p>These terms and conditions are governed by and construed in accordance with applicable laws, and you irrevocably submit to the exclusive jurisdiction of the courts in that state or location.</p>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div id="contact" class="content-section">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <p>We value your feedback and are here to assist you with any questions or concerns you may have about our services. Please don't hesitate to reach out to us through any of the following methods:</p>
+
+            <div class="contact-info">
+                <h4>Get In Touch</h4>
+                <p><strong>Business Name:</strong> Civil At Hand</p>
+                <p><strong>Email:</strong> civilathandofficial@gmail.com</p>
+                <p><strong>Website:</strong> www.civilathand.com</p>
+            </div>
+
+            <h3>What You Can Contact Us For</h3>
+            <ul>
+                <li>General inquiries about our services</li>
+                <li>Technical support and website issues</li>
+                <li>Content suggestions and feedback</li>
+                <li>Partnership and collaboration opportunities</li>
+                <li>Privacy policy questions</li>
+                <li>Reporting errors or outdated information</li>
+                <li>Media inquiries</li>
+            </ul>
+
+            <h3>Response Time</h3>
+            <p>We strive to respond to all inquiries within 24-48 hours during business days. For urgent matters, please clearly indicate the urgency in your email subject line.</p>
+
+            <h3>Feedback and Suggestions</h3>
+            <p>Your feedback is invaluable to us in improving our services and content. If you have suggestions for new topics to cover or improvements to existing content, we would love to hear from you.</p>
+
+            <div class="highlight-box">
+                <h4>Business Hours</h4>
+                <p>Monday to Friday: 9:00 AM - 6:00 PM<br>
+                Saturday: 10:00 AM - 4:00 PM<br>
+                Sunday: Closed</p>
+            </div>
+
+            <h3>Connect With Us</h3>
+            <p>Stay updated with the latest information and updates by following us on our social media platforms and subscribing to our newsletter. We regularly share helpful tips, policy updates, and important announcements.</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>© 2024 Civil At Hand. All rights reserved.</strong></p>
+            <p>Helping you navigate civil services with confidence and ease.</p>
+            <p>Last updated: August 2024</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                btn.style.color = '#4a5568';
+            });
+            
+            // Highlight active button
+            event.target.style.background = '#667eea';
+            event.target.style.color = 'white';
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add entrance animations with delays
+            const elements = document.querySelectorAll('.content-section, .nav-btn');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
