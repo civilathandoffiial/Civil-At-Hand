@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Our Services | Civil At Hand</title>
+    <meta name="description" content="Get your civil engineering work done by professionals. AutoCAD drafting, Revit modeling, QGIS mapping, estimation, consulting, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #205081;
+            --accent: #28a745;
+            --accent2: #007bff;
+            --accent3: #f8cc00;
+            --card-bg: #fff;
+            --shadow: 0 8px 32px rgba(0,123,255,.10);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e3efff 0%, #f9f9fc 100%);
+            color: #1a2236;
+        }
+        .disco-hero {
+            background: linear-gradient(120deg, #003366 0%, #205081 50%, #007bff 100%);
+            background-size: 200% 200%;
+            animation: bgMove 14s ease-in-out infinite;
+            color: #fff;
+            padding: 4rem 1rem 2.5rem 1rem;
+            text-align: center;
+            border-radius: 0 0 2.5rem 2.5rem;
+            box-shadow: 0 6px 32px rgba(40,167,69,.08), 0 1px 0 #e3f0fa;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes bgMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .disco-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1.6px;
+            margin-bottom: 0.7rem;
+        }
+        .disco-hero p {
+            font-size: 1.25rem;
+            opacity: .93;
+            margin-bottom: 2.2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .disco-hero .cta-btn {
+            background: var(--accent2);
+            color: #fff;
+            padding: 1.1rem 2.8rem;
+            border-radius: 2.2rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 20px rgba(0,123,255,.16);
+            transition: background .18s, transform .11s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .disco-hero .cta-btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        .hero-features {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.3rem;
+        }
+        .hero-feature {
+            background: rgba(255,255,255,0.14);
+            border-radius: 1.1rem;
+            padding: 1rem 1.8rem;
+            color: #ffe066;
+            font-size: 1.05rem;
+            font-weight: 600;
+            box-shadow: 0 2px 18px rgba(0,0,0,.06);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+        }
+        .hero-feature i {
+            font-size: 1.3em;
+            color: #ffe066;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 2.3rem;
+            letter-spacing: -1.1px;
+        }
+        .services-grid {
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 2.5rem 1.2rem 2.5rem 1.2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(270px,1fr));
+            gap: 2.5rem;
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 1.6rem;
+            box-shadow: 0 6px 36px rgba(0,123,255,.08);
+            border: 1.5px solid #cbe4fa;
+            transition: box-shadow .26s cubic-bezier(.4,0,.2,1), transform .17s cubic-bezier(.4,0,.2,1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            padding: 2.5rem 1.5rem 2.9rem 1.5rem;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            box-shadow: 0 16px 72px rgba(0,123,255,.16);
+            border-color: var(--accent2);
+            transform: translateY(-7px) scale(1.035);
+        }
+        .service-card .icon {
+            font-size: 2.8rem;
+            color: var(--accent2);
+            margin-bottom: 1.1rem;
+            transition: color .16s;
+        }
+        .service-card:hover .icon {
+            color: var(--primary);
+        }
+        .service-card .title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: .7rem;
+            text-align: center;
+        }
+        .service-card .desc {
+            color: #4a6785;
+            font-size: 1.07rem;
+            text-align: center;
+            margin-bottom: .6rem;
+        }
+        .service-card .action {
+            color: var(--accent2);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-top: 1.1rem;
+            letter-spacing: .02em;
+        }
+        .service-card .arrow {
+            transition: transform .14s cubic-bezier(.4,0,.2,1);
+            display: inline-block;
+        }
+        .service-card:hover .arrow {
+            transform: translateX(5px) scale(1.18);
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -120px; left: -110px;
+            width: 170px; height: 170px;
+            background: radial-gradient(circle at 30% 30%, #007bff1a 0%, #fff0 80%);
+            z-index: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+        .service-card:hover::before { opacity: 0.92; }
+        /* Responsive */
+        @media (max-width: 700px) {
+            .disco-hero h1 { font-size: 2rem;}
+            .services-grid { gap: 1.2rem; }
+            .service-card { padding: 2rem 0.8rem 2.5rem 0.8rem;}
+        }
+    </style>
+</head>
+<body>
+    <!-- Service Discovery Hero -->
+    <section class="disco-hero">
+        <h1>Discover Our Services</h1>
+        <p>
+            Get your <b>civil engineering work done</b> by top professionals. From AutoCAD drafting to Revit BIM modeling, QGIS mapping, estimation, and expert consulting, Civil At Hand delivers high-quality, reliable results for your academic, professional, or business needs.
+        </p>
+        <a href="https://forms.gle/ZhnSwMSnCEbBSicZ8" target="_blank" class="cta-btn">Submit Your Work Request</a>
+        <div class="hero-features">
+            <div class="hero-feature"><i class="fas fa-bolt"></i> Express Delivery</div>
+            <div class="hero-feature"><i class="fas fa-user-check"></i> Verified Experts</div>
+            <div class="hero-feature"><i class="fas fa-file-alt"></i> Confidential & Secure</div>
+            <div class="hero-feature"><i class="fas fa-handshake"></i> End-to-End Support</div>
+            <div class="hero-feature"><i class="fas fa-thumbs-up"></i> 100% Satisfaction</div>
+        </div>
+    </section>
+
+    <!-- Core Services Section -->
+    <section id="core-services">
+        <div class="section-title">Our Civil Engineering Work Services</div>
+        <div class="services-grid">
+            <div tabindex="0" class="service-card" data-service="autocad">
+                <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
+                <div class="title">AutoCAD Drafting</div>
+                <div class="desc">
+                    Get your plans, elevations, sections, layout, and civil drawings professionally drafted in AutoCAD. Fast, accurate, and ready for submission or construction.
+                </div>
+                <div class="action">Order AutoCAD Work <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="revit">
+                <div class="icon"><i class="fab fa-autodesk"></i></div>
+                <div class="title">Revit (BIM) Modeling</div>
+                <div class="desc">
+                    BIM-ready 3D models, detailed plans, and quantity takeoff using Revit for buildings, interiors, and infrastructure—delivered as per your specifications.
+                </div>
+                <div class="action">Order Revit Modeling <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="qgis">
+                <div class="icon"><i class="fas fa-globe"></i></div>
+                <div class="title">QGIS Mapping & GIS Work</div>
+                <div class="desc">
+                    Custom GIS maps, land-use analysis, georeferencing, and project mapping using QGIS—perfect for research, planning, and reports.
+                </div>
+                <div class="action">Order GIS Work <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="estimation">
+                <div class="icon"><i class="fas fa-calculator"></i></div>
+                <div class="title">Estimation & Quantity Calculations</div>
+                <div class="desc">
+                    Get BOQ, take-offs, material estimation, and cost analysis for your project—accurate, detailed, and ready for tender or execution.
+                </div>
+                <div class="action">Order Estimation <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="consulting">
+                <div class="icon"><i class="fas fa-hand-holding-compass"></i></div>
+                <div class="title">Civil Engineering Consulting</div>
+                <div class="desc">
+                    Professional advice, proof-checking, technical review, and project support for design, site issues, documentation, or reports.
+                </div>
+                <div class="action">Request Consulting <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="material">
+                <div class="icon"><i class="fas fa-book-open"></i></div>
+                <div class="title">Academic/Project Reports & Notes</div>
+                <div class="desc">
+                    Custom written reports, technical documents, or high-quality notes for your academic or professional needs—original and formatted.
+                </div>
+                <div class="action">Order Report/Notes <span class="arrow">&rarr;</span></div>
+            </div>
+            <div tabindex="0" class="service-card" data-service="custom">
+                <div class="icon"><i class="fas fa-cogs"></i></div>
+                <div class="title">Custom Civil Work</div>
+                <div class="desc">
+                    Got a unique civil engineering requirement? Tell us what you need and we’ll deliver a solution tailored to your project.
+                </div>
+                <div class="action">Describe Your Work <span class="arrow">&rarr;</span></div>
+            </div>
+        </div>
+        <p class="mt-8 text-center text-lg text-gray-600">All requests are handled confidentially by our expert team. <br><b class="text-[var(--accent2)]">Click any service to submit your work and get started!</b></p>
+    </section>
+
+    <script>
+    // Animate all service cards to open Google Form with feedback
+    document.querySelectorAll('.service-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+            card.classList.add('pulse-btn');
+            setTimeout(() => {
+                window.open('https://forms.gle/ZhnSwMSnCEbBSicZ8', '_blank');
+                card.classList.remove('pulse-btn');
+            }, 270);
+        });
+        card.addEventListener('keydown', function(e){
+            if(e.key === 'Enter' || e.key === ' ') {
+                card.click();
+            }
+        });
+    });
+    </script>
+</body>
+</html>
