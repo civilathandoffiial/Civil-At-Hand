@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil Engineering Subject Notes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      color: #333;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #0d6efd;
+    }
+    p.description {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+    /* Search Styles */
+    .search-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .search-container input {
+      width: 50%;
+      max-width: 400px;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(13,110,253,0.5);
+    }
+    /* Card Panel Styles */
+    .card-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .card h3 {
+      margin-bottom: 0.75rem;
+      color: #0d6efd;
+    }
+    .card p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .card a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #0d6efd;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    .card a:hover {
+      background: #6610f2;
+    }
+    @media (max-width: 480px) {
+      .card-panel {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .search-container input {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Civil Engineering Notes</h1>
+    <p class="description">Select a subject to access detailed study materials.</p>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for subjects..." onkeyup="searchSubjects()">
+    </div>
+    
+    <!-- Card Panel -->
+    <div class="card-panel" id="cardPanel">
+      <!-- Structural Analysis -->
+      <div class="card">
+        <h3>Structural Analysis</h3>
+        <p>Understand the fundamentals of structural behavior and design.</p>
+        <a href="https://drive.google.com/drive/folders/STRUCTURAL_ANALYSIS" target="_blank">View Notes</a>
+      </div>
+      <!-- Reinforced Concrete Design -->
+      <div class="card">
+        <h3>Reinforced Concrete Design</h3>
+        <p>Explore design principles for reinforced concrete structures.</p>
+        <a href="https://drive.google.com/drive/folders/REINFORCED_CONCRETE" target="_blank">View Notes</a>
+      </div>
+      <!-- Steel Structures Design -->
+      <div class="card">
+        <h3>Steel Structures Design</h3>
+        <p>Learn about designing efficient and resilient steel structures.</p>
+        <a href="https://drive.google.com/drive/folders/STEEL_STRUCTURES" target="_blank">View Notes</a>
+      </div>
+      <!-- Geotechnical Engineering -->
+      <div class="card">
+        <h3>Geotechnical Engineering</h3>
+        <p>Dive into soil mechanics and foundation engineering.</p>
+        <a href="https://drive.google.com/drive/folders/GEOTECHNICAL_ENGINEERING" target="_blank">View Notes</a>
+      </div>
+      <!-- Environmental Engineering -->
+      <div class="card">
+        <h3>Environmental Engineering</h3>
+        <p>Study sustainable practices and environmental impact assessments.</p>
+        <a href="https://drive.google.com/drive/folders/ENVIRONMENTAL_ENGINEERING" target="_blank">View Notes</a>
+      </div>
+      <!-- Transportation Engineering -->
+      <div class="card">
+        <h3>Transportation Engineering</h3>
+        <p>Examine the planning, design, and operation of transportation systems.</p>
+        <a href="https://drive.google.com/drive/folders/TRANSPORTATION_ENGINEERING" target="_blank">View Notes</a>
+      </div>
+      <!-- Water Resources Engineering -->
+      <div class="card">
+        <h3>Water Resources Engineering</h3>
+        <p>Learn about the management and engineering of water systems.</p>
+        <a href="https://drive.google.com/drive/folders/WATER_RESOURCES_ENGINEERING" target="_blank">View Notes</a>
+      </div>
+      <!-- Construction Management -->
+      <div class="card">
+        <h3>Construction Management</h3>
+        <p>Discover project planning, cost estimation, and management strategies.</p>
+        <a href="https://drive.google.com/drive/folders/CONSTRUCTION_MANAGEMENT" target="_blank">View Notes</a>
+      </div>
+      <!-- Surveying & Geomatics -->
+      <div class="card">
+        <h3>Surveying & Geomatics</h3>
+        <p>Get insights into modern surveying techniques and geomatics.</p>
+        <a href="https://drive.google.com/drive/folders/SURVEYING_GEOMATICS" target="_blank">View Notes</a>
+      </div>
+      <!-- Building Materials -->
+      <div class="card">
+        <h3>Building Materials</h3>
+        <p>Understand the properties and applications of various construction materials.</p>
+        <a href="https://drive.google.com/drive/folders/BUILDING_MATERIALS" target="_blank">View Notes</a>
+      </div>
+      <!-- Hydraulic Engineering -->
+      <div class="card">
+        <h3>Hydraulic Engineering</h3>
+        <p>Explore the principles of fluid mechanics in civil engineering.</p>
+        <a href="https://drive.google.com/drive/folders/HYDRAULIC_ENGINEERING" target="_blank">View Notes</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function searchSubjects() {
+      var input = document.getElementById("searchInput").value.toLowerCase();
+      var cards = document.getElementsByClassName("card");
+      for (var i = 0; i < cards.length; i++) {
+        var title = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        if (title.indexOf(input) > -1) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
