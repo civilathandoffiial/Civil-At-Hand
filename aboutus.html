@@ -161,6 +161,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .nav-btn::before {
@@ -200,11 +201,13 @@
             padding: 50px;
             margin-bottom: 40px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            display: none;
-            animation: zoomIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
+            display: none;
         }
 
         .content-section::before {
@@ -220,6 +223,8 @@
 
         .content-section.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .content-section.active::before {
@@ -444,28 +449,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            z-index: 9999;
-            transition: width 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2.5em; }
-            .header p { font-size: 1.2em; }
-            .navigation { flex-direction: column; align-items: center; }
-            .content-section { padding: 30px 25px; }
-            .container { padding: 15px; }
-            .nav-btn { padding: 15px 30px; font-size: 1em; }
-            .section-title { font-size: 2.2em; }
-            .stats-container { grid-template-columns: 1fr; }
-        }
-
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -482,6 +465,17 @@
             width: 0%;
             transition: width 0.1s ease;
         }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.5em; }
+            .header p { font-size: 1.2em; }
+            .navigation { flex-direction: column; align-items: center; }
+            .content-section { padding: 30px 25px; }
+            .container { padding: 15px; }
+            .nav-btn { padding: 15px 30px; font-size: 1em; }
+            .section-title { font-size: 2.2em; }
+            .stats-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -496,8 +490,6 @@
         <div class="scroll-progress" id="scrollProgress"></div>
     </div>
 
-    <div class="loading-bar" id="loadingBar"></div>
-
     <div class="container">
         <div class="header">
             <h1>Civil At Hand</h1>
@@ -505,11 +497,11 @@
         </div>
 
         <div class="navigation">
-            <a href="#" class="nav-btn active" onclick="showSection('about', this)">🏠 About Us</a>
-            <a href="#" class="nav-btn" onclick="showSection('disclaimer', this)">⚠️ Disclaimer</a>
-            <a href="#" class="nav-btn" onclick="showSection('privacy', this)">🔒 Privacy Policy</a>
-            <a href="#" class="nav-btn" onclick="showSection('terms', this)">📋 Terms of Service</a>
-            <a href="#" class="nav-btn" onclick="showSection('contact', this)">📞 Contact Us</a>
+            <a href="#about" class="nav-btn active" data-section="about">🏠 About Us</a>
+            <a href="#disclaimer" class="nav-btn" data-section="disclaimer">⚠️ Disclaimer</a>
+            <a href="#privacy" class="nav-btn" data-section="privacy">🔒 Privacy Policy</a>
+            <a href="#terms" class="nav-btn" data-section="terms">📋 Terms of Service</a>
+            <a href="#contact" class="nav-btn" data-section="contact">📞 Contact Us</a>
         </div>
 
         <!-- About Us Section -->
@@ -608,9 +600,6 @@
             <h3>Third-Party Links and Resources</h3>
             <p>Our website contains links to official government websites, forms, and other external resources. While we carefully select these links, we cannot control the content, availability, or accuracy of external sites. We recommend treating all external sources as independent references that should be evaluated on their own merits.</p>
 
-            <h3>Updates and Changes</h3>
-            <p>Government policies, procedures, and requirements change regularly. While we make every effort to keep our content current, there may be periods when our information doesn't reflect the most recent changes. We encourage users to check official sources for the most up-to-date information, especially for time-sensitive matters.</p>
-
             <div class="highlight-box">
                 <h4>Our Promise to You</h4>
                 <p>Despite these necessary legal disclaimers, we want you to know that we take our responsibility to you seriously. We work diligently to provide helpful, accurate information and will always be transparent about the limitations of what we can offer.</p>
@@ -662,34 +651,45 @@
                 <li>Regular backups to prevent data loss</li>
             </ul>
 
-            <p>However, we want to be honest: no online system is 100% secure. While we use industry best practices, we cannot guarantee absolute security and encourage you to be mindful of what information you share online.</p>
+            <div class="contact-info">
+                <h4>Privacy Concerns?</h4>
+                <p>If you have any questions about this Privacy Policy, please contact us at:</p>
+                <p><strong>civilathandofficial@gmail.com</strong></p>
+            </div>
+        </div>
 
-            <h3>Cookies and Tracking</h3>
-            <p>We use cookies to make your experience better, not to invade your privacy. Our cookies help us:</p>
+        <!-- Terms of Service Section -->
+        <div id="terms" class="content-section">
+            <h2 class="section-title">Terms of Service</h2>
+            
+            <h3>Acceptance of Terms</h3>
+            <p>By accessing and using the Civil At Hand website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by these terms, please do not use this service.</p>
+
+            <h3>Use License</h3>
+            <p>Permission is granted to temporarily download one copy of the materials on Civil At Hand website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
             <ul>
-                <li>Remember your preferences so you don't have to reset them each visit</li>
-                <li>Understand which content is most valuable to our users</li>
-                <li>Ensure our website works properly across different devices and browsers</li>
-                <li>Measure the effectiveness of our content and improve accordingly</li>
+                <li>Modify or copy the materials for commercial use</li>
+                <li>Use the materials for any commercial purpose or for any public display without permission</li>
+                <li>Attempt to reverse engineer any software contained on the website</li>
+                <li>Remove any copyright or other proprietary notations from the materials</li>
             </ul>
 
-            <p>You can control or disable cookies through your browser settings, though this might affect some website functionality.</p>
-
-            <h3>Third-Party Services</h3>
-            <p>To provide you with the best possible service, we work with trusted third-party providers:</p>
+            <h3>User Conduct</h3>
+            <p>Users agree to use the website only for lawful purposes and in a way that does not infringe the rights of others or restrict their use and enjoyment of the website. Prohibited behavior includes:</p>
             <ul>
-                <li><strong>Analytics Services:</strong> Help us understand how our website is used so we can improve it</li>
-                <li><strong>Email Services:</strong> Enable us to send you requested updates and respond to your inquiries</li>
-                <li><strong>Security Services:</strong> Protect our website from spam, abuse, and security threats</li>
+                <li>Harassing or causing distress to any other user</li>
+                <li>Transmitting obscene or offensive content</li>
+                <li>Disrupting the normal flow of dialogue on the website</li>
+                <li>Attempting to gain unauthorized access to our systems</li>
             </ul>
 
-            <p>These providers are carefully selected and bound by strict data protection agreements.</p>
+            <h3>Content Accuracy</h3>
+            <p>While we strive to provide accurate and up-to-date information, Civil At Hand makes no warranties, expressed or implied, and hereby disclaims all other warranties including, without limitation, implied warranties of merchantability or fitness for a particular purpose.</p>
 
-            <h3>Your Rights and Control</h3>
-            <p>You have complete control over your personal information:</p>
-            <ul>
-                <li><strong>Access:</strong> Request to see what information we have about you</li>
-                <li><strong>Correction:</strong> Ask us to update or correct any inaccurate information</li>
-                <li><strong>Deletion:</strong> Request removal of your personal information from our systems</li>
-                <li><strong>Portability:</strong> Get a copy of your data in a format you can use elsewhere</li>
-                <li>
+            <h3>Modifications</h3>
+            <p>Civil At Hand may revise these terms of service at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.</p>
+
+            <div class="highlight-box">
+                <h4>Fair Use Policy</h4>
+                <p>Our content is designed to help citizens understand civil processes. We encourage sharing of our resources for educational purposes while respecting our intellectual property rights.</p>
+            </div>
