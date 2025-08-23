@@ -1,667 +1,1012 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engineering Exam Updates</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <style>
-    :root {
-      --primary: #1451a3;
-      --secondary: #1ca772;
-      --danger: #e74c3c;
-      --info: #e67e22;
-      --purple: #8e44ad;
-      --bg: #f4f6fa;
-      --text: #222;
-      --header: #22304b;
-      --card-bg: #fff;
-      --border-radius: 14px;
-      --shadow: 0 6px 24px 0 #153e6020, 0 1px 5px 0 #0001;
-      --transition: .23s cubic-bezier(.62,.05,.36,.99);
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      font-family: 'Roboto', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 40px auto 0 auto;
-      background: var(--card-bg);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 0 0 30px 0;
-      position: relative;
-    }
-    .page-header {
-      background: linear-gradient(90deg, var(--primary), var(--secondary) 80%);
-      color: #fff;
-      padding: 36px 0 22px 0;
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
-      text-align: center;
-      font-weight: 800;
-      font-size: 2.25rem;
-      letter-spacing: 1px;
-      position: relative;
-      box-shadow: 0 2px 14px #2980b91d;
-      text-transform: uppercase;
-      margin: 0 0 24px 0;
-      user-select: none;
-    }
-    .page-header .header-icon {
-      font-size: 2.3rem;
-      margin-right: 10px;
-      vertical-align: middle;
-      color: #ffd700;
-      text-shadow: 0 2px 8px #0002;
-    }
-    .live-board {
-      width: 100%;
-      margin: 0 auto 24px auto;
-      background: linear-gradient(90deg, #1ca772cc, #1451a3cc 65%, #e74c3ccc);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1.08rem;
-      font-weight: 700;
-      overflow: hidden;
-      position: relative;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 14px #1ca77211;
-      padding: 0 0 0 10px;
-    }
-    .live-board .marquee {
-      display: inline-block;
-      white-space: nowrap;
-      animation: marquee 16s linear infinite;
-      font-family: 'Roboto', sans-serif;
-      padding-left: 100%;
-      font-size: 1.1rem;
-      text-shadow: 0 2px 8px #2222;
-      letter-spacing: 1px;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(0);}
-      100% { transform: translateX(-100%);}
-    }
-    .live-board i {
-      margin: 0 16px 0 6px;
-      color: #ffe066;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { opacity: .8;}
-      50% { opacity: 1;}
-      100% { opacity: .8;}
-    }
-    .filter-container {
-      position: absolute;
-      top: 27px;
-      right: 18px;
-      z-index: 2;
-    }
-    .filter-button {
-      padding: 10px 18px;
-      background: linear-gradient(135deg, var(--danger), #c0392b);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: background var(--transition),box-shadow var(--transition),transform var(--transition);
-      box-shadow: 0 2px 8px #e74c3c13;
-    }
-    .filter-button:hover {
-      background: linear-gradient(135deg, #c0392b, var(--danger));
-      transform: scale(1.06);
-      box-shadow: 0 6px 24px #e74c3c20;
-    }
-    #gridContainer {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-      padding: 0 30px;
-      animation: gridFadeIn 1s forwards .5s;
-      opacity: 0;
-      transition: grid-template-columns .3s;
-    }
-    @keyframes gridFadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    .column-header {
-      text-align: center;
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      letter-spacing: 1.2px;
-      padding-bottom: 6px;
-      text-transform: uppercase;
-      user-select: none;
-    }
-    .column-notifications { border-bottom: 3px solid var(--danger); color: var(--danger);}
-    .column-results       { border-bottom: 3px solid var(--secondary); color: var(--secondary);}
-    .column-admitcards    { border-bottom: 3px solid var(--info); color: var(--info);}
-    .column-answerkeys    { border-bottom: 3px solid var(--purple); color: var(--purple);}
-    .panel-item {
-      background: #f7fafd;
-      padding: 20px 16px 16px 16px;
-      border-radius: 11px;
-      margin-bottom: 22px;
-      box-shadow: 0 2px 12px #1ca77211;
-      transition: transform var(--transition), box-shadow var(--transition), background .21s;
-      min-height: 110px;
-      position: relative;
-      border-left: 6px solid var(--primary);
-      border-bottom: 2px solid #e5e9f2;
-    }
-    .panel-item:hover {
-      background: #f3f7fc;
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 6px 24px #1ca77213;
-      z-index: 1;
-    }
-    .item-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 9px;
-      gap: 8px;
-    }
-    .new-label {
-      background-color: var(--danger);
-      color: #fff;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 2px 7px;
-      border-radius: 3px 7px 7px 3px;
-      margin-right: 5px;
-      text-shadow: 0 2px 5px #e74c3c22;
-      letter-spacing: .5px;
-    }
-    .item-header i {
-      font-size: 21px;
-      color: var(--primary);
-      margin-right: 6px;
-    }
-    .item-title {
-      font-size: 1.07rem;
-      font-weight: 700;
-      color: #2c3e50;
-      margin-right: 5px;
-    }
-    .item-subtitle,
-    .item-description {
-      font-size: 14px;
-      color: #5f6c7e;
-      margin-top: 3px;
-      margin-bottom: 0;
-    }
-    .item-link {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
-      background: linear-gradient(135deg, var(--primary), #3498db);
-      color: #fff;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: .99rem;
-      letter-spacing: .6px;
-      box-shadow: 0 1px 8px #2980b926;
-      transition: background-color .25s, transform .17s, color .18s;
-      position: relative;
-    }
-    .item-link:hover {
-      transform: scale(1.06);
-      color: #ffd700;
-      background: linear-gradient(135deg, #3498db, var(--primary));
-    }
-    .badge {
-      position: absolute;
-      top: -16px;
-      right: -12px;
-      background: var(--secondary);
-      color: #fff;
-      padding: 5px 12px;
-      border-radius: 22px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      box-shadow: 0 2px 8px #27ae6033;
-      z-index: 10;
-      pointer-events: none;
-    }
-    /* Footer */
-    .panel-footer {
-      text-align: center;
-      margin-top: 28px;
-      font-size: 1.01rem;
-      color: #7f8c8d;
-      padding-bottom: 12px;
-    }
-    .panel-footer a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .panel-footer a:hover {
-      text-decoration: underline;
-    }
-    /* Filter Modal Styles */
-    .filter-modal {
-      display: none;
-      position: fixed;
-      z-index: 4000;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.48);
-      backdrop-filter: blur(5px);
-      justify-content: center;
-      align-items: center;
-      animation: modalFadeIn 0.5s ease-out;
-    }
-    @keyframes modalFadeIn {
-      from { opacity: 0;}
-      to { opacity: 1;}
-    }
-    .filter-modal.show {
-      display: flex;
-    }
-    .filter-modal-content {
-      background: #fff;
-      padding: 32px 24px;
-      border-radius: 13px;
-      max-width: 360px;
-      width: 92%;
-      text-align: center;
-      box-shadow: 0 8px 16px #2980b933;
-      position: relative;
-      animation: scaleIn 0.5s cubic-bezier(.7,1.8,.3,1);
-    }
-    @keyframes scaleIn {
-      from { transform: scale(.8); opacity: 0;}
-      to { transform: scale(1); opacity: 1;}
-    }
-    .filter-modal-content h3 {
-      margin-bottom: 17px;
-      font-size: 1.2rem;
-      color: var(--header);
-    }
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 13px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #999;
-      padding: 3px 7px;
-      border-radius: 50%;
-      transition: color .3s, background .2s;
-    }
-    .close-modal:hover {
-      color: #e74c3c;
-      background: #eee;
-    }
-    .filter-option {
-      display: block;
-      margin: 10px 0;
-      padding: 11px 0;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background .23s, transform .13s;
-      font-size: 1rem;
-      font-weight: 700;
-      width: 100%;
-      outline: none;
-    }
-    .filter-option:hover {
-      background: #3498db;
-      transform: scale(1.04);
-    }
-    .filter-option.all { background: #2ecc71;}
-    .filter-option.all:hover { background: #27ae60;}
-    /* Responsive */
-    @media (max-width: 1100px) {
-      #gridContainer { grid-template-columns: repeat(2, 1fr);}
-      .filter-container { top: 13px; right: 10px;}
-      .container { padding-left: 0; padding-right: 0;}
-    }
-    @media (max-width: 800px) {
-      #gridContainer { grid-template-columns: 1fr;}
-      .container { padding: 0; }
-      .column-header { font-size: .99rem;}
-      .item-title { font-size: .98rem;}
-      .item-link { font-size: .92rem;}
-      .panel-footer { font-size: .97rem;}
-      .live-board { height: 37px; font-size: .9rem;}
-    }
-    @media (max-width: 480px) {
-      .container { padding: 0;}
-      .page-header { font-size: 1.1rem;}
-      .column-header { font-size: .91rem;}
-      .item-title { font-size: .93rem;}
-      .item-link { font-size: .8rem; padding: 7px 9px;}
-      .live-board { font-size: .83rem;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Updates - Exams, Jobs & Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --success: #16a34a;
+            --bg-primary: #f8fafc;
+            --bg-white: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --radius: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-white);
+            border-bottom: 2px solid var(--border);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .header h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .header-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .last-updated {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        /* Live Updates Board */
+        .updates-board {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .board-container {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .board-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .board-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .board-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .updates-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius);
+            border-left: 4px solid #fbbf24;
+            transition: all 0.3s ease;
+        }
+
+        .update-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .update-date {
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .update-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .update-badge {
+            font-size: 0.625rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-new { background: var(--danger); color: white; }
+        .badge-open { background: var(--success); color: white; }
+        .badge-result { background: var(--warning); color: white; }
+
+        /* Filter Controls */
+        .filter-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: var(--bg-white);
+            border: 2px solid var(--border);
+            border-radius: 25px;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card Styles */
+        .exam-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .icon-notification { background: var(--primary); }
+        .icon-result { background: var(--success); }
+        .icon-admit { background: var(--warning); }
+        .icon-answer { background: var(--danger); }
+
+        .card-info {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-new { background: #fee2e2; color: var(--danger); }
+        .status-open { background: #dcfce7; color: var(--success); }
+        .status-live { background: #fef3c7; color: #92400e; }
+        .status-released { background: #e0e7ff; color: var(--primary); }
+
+        .card-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .card-action {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .card-action:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-controls {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+            }
+
+            .updates-list {
+                gap: 0.5rem;
+            }
+
+            .update-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .update-date {
+                align-self: flex-end;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Page Header & Filter Button -->
-    <div class="page-header">
-      <span class="header-icon"><i class="fas fa-graduation-cap"></i></span>
-      Engineering Exam Updates
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
     </div>
-    <div class="filter-container">
-      <button class="filter-button" onclick="openFilterModal()">
-        <i class="fas fa-filter"></i> Filter
-      </button>
-    </div>
-    <!-- Animated Board (Live Updates Ticker) -->
-    <div class="live-board" id="liveBoard">
-      <i class="fas fa-bolt"></i>
-      <div class="marquee" id="marqueeText">
-        SSC JE 2025 Notification OUT! | GATE 2026 Application Open | NEET 2025 Answer Key Available | UPSC Engineering Results Announced | Stay tuned for latest updates 🚀
-      </div>
-    </div>
-    <!-- Filter Modal Popup (opens on page load) -->
-    <div id="filterModal" class="filter-modal" onclick="closeFilterModal(event)">
-      <div class="filter-modal-content">
-        <span class="close-modal" onclick="closeFilterModal(event)">&times;</span>
-        <h3>Select a Category</h3>
-        <button class="filter-option all" onclick="applyFilter('all')"><i class="fas fa-globe"></i> Show All</button>
-        <button class="filter-option" onclick="applyFilter('notifications')"><i class="fas fa-bullhorn"></i> Exam Notifications</button>
-        <button class="filter-option" onclick="applyFilter('results')"><i class="fas fa-file-alt"></i> Exam Results</button>
-        <button class="filter-option" onclick="applyFilter('admitcards')"><i class="fas fa-id-card"></i> Admit Cards</button>
-        <button class="filter-option" onclick="applyFilter('answerkeys')"><i class="fas fa-book-open"></i> Answer Keys</button>
-      </div>
-    </div>
-    <!-- Grid Container -->
-    <div id="gridContainer">
-      <!-- Column 1: Exam Notifications -->
-      <div id="column-notifications">
-        <div class="column-header column-notifications">Exam Notifications</div>
-        <div class="panel-item">
-          <span class="badge">HOT</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-bullhorn"></i>
-            <span class="item-title">SSC JE 2025 Notification</span>
-          </div>
-          <p class="item-subtitle">Posted on: Aug 2, 2025</p>
-          <p class="item-description">Official notification released for SSC Junior Engineer 2025. Check eligibility and apply now.</p>
-          <a href="https://ssc.nic.in/" class="item-link" target="_blank">Official SSC Website</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">OPEN</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-bullhorn"></i>
-            <span class="item-title">GATE 2026 Application Form</span>
-          </div>
-          <p class="item-subtitle">Posted on: July 30, 2025</p>
-          <p class="item-description">GATE 2026 registration is now open. Apply before the last date!</p>
-          <a href="https://gate.iitk.ac.in/" class="item-link" target="_blank">Apply for GATE 2026</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">ALERT</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-bullhorn"></i>
-            <span class="item-title">UPSC Engineering Notification 2025</span>
-          </div>
-          <p class="item-subtitle">Posted on: Aug 1, 2025</p>
-          <p class="item-description">UPSC Engineering Services Examination 2025 notification is out now.</p>
-          <a href="https://upsc.gov.in/" class="item-link" target="_blank">Official UPSC Website</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-bullhorn"></i>
-            <span class="item-title">NEET 2025 Notification</span>
-          </div>
-          <p class="item-subtitle">Posted on: July 25, 2025</p>
-          <p class="item-description">NEET 2025 exam notification released for medical aspirants.</p>
-          <a href="https://ntaneet.nic.in/" class="item-link" target="_blank">Official NEET Website</a>
-        </div>
-      </div>
-      <!-- Column 2: Exam Results -->
-      <div id="column-results">
-        <div class="column-header column-results">Exam Results</div>
-        <div class="panel-item">
-          <span class="badge">LIVE</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-file-alt"></i>
-            <span class="item-title">SSC JE 2025 Result</span>
-          </div>
-          <p class="item-subtitle">Announced: Aug 7, 2025</p>
-          <p class="item-description">Check your SSC JE 2025 result and scorecard online.</p>
-          <a href="https://ssc.nic.in/" class="item-link" target="_blank">View SSC JE Results</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-file-alt"></i>
-            <span class="item-title">GATE 2025 Result</span>
-          </div>
-          <p class="item-subtitle">Announced: June 20, 2025</p>
-          <p class="item-description">GATE 2025 results now available. Check your score and cutoff.</p>
-          <a href="https://gate.iitk.ac.in/" class="item-link" target="_blank">View GATE Results</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">RELEASED</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-file-alt"></i>
-            <span class="item-title">UPSC Engineering Results 2025</span>
-          </div>
-          <p class="item-subtitle">Announced: July 18, 2025</p>
-          <p class="item-description">UPSC Engineering Services Examination 2025 results published.</p>
-          <a href="https://upsc.gov.in/" class="item-link" target="_blank">View UPSC Results</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-file-alt"></i>
-            <span class="item-title">NEET 2025 Results</span>
-          </div>
-          <p class="item-subtitle">Announced: July 29, 2025</p>
-          <p class="item-description">NEET 2025 results and scorecards are available for download.</p>
-          <a href="https://ntaneet.nic.in/" class="item-link" target="_blank">View NEET Results</a>
-        </div>
-      </div>
-      <!-- Column 3: Admit Cards -->
-      <div id="column-admitcards">
-        <div class="column-header column-admitcards">Admit Cards</div>
-        <div class="panel-item">
-          <span class="badge">DOWNLOAD</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-id-card"></i>
-            <span class="item-title">SSC JE 2025 Admit Card</span>
-          </div>
-          <p class="item-subtitle">Available from: July 25, 2025</p>
-          <p class="item-description">Download your SSC JE 2025 admit card from the official site.</p>
-          <a href="https://ssc.nic.in/" class="item-link" target="_blank">Download SSC Admit Card</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">LIVE</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-id-card"></i>
-            <span class="item-title">GATE 2026 Admit Card</span>
-          </div>
-          <p class="item-subtitle">Available from: Dec 10, 2025</p>
-          <p class="item-description">GATE 2026 Admit Card is now available for download.</p>
-          <a href="https://gate.iitk.ac.in/" class="item-link" target="_blank">Download GATE Admit Card</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-id-badge"></i>
-            <span class="item-title">UPSC Engineering Admit Card</span>
-          </div>
-          <p class="item-subtitle">Available from: Aug 10, 2025</p>
-          <p class="item-description">Download your UPSC Engineering Services 2025 admit card.</p>
-          <a href="https://upsc.gov.in/" class="item-link" target="_blank">Download UPSC Admit Card</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-id-card"></i>
-            <span class="item-title">NEET 2025 Admit Card</span>
-          </div>
-          <p class="item-subtitle">Available from: July 15, 2025</p>
-          <p class="item-description">NEET 2025 admit cards now available for registered candidates.</p>
-          <a href="https://ntaneet.nic.in/" class="item-link" target="_blank">Download NEET Admit Card</a>
-        </div>
-      </div>
-      <!-- Column 4: Answer Keys -->
-      <div id="column-answerkeys">
-        <div class="column-header column-answerkeys">Answer Keys</div>
-        <div class="panel-item">
-          <span class="badge">RELEASED</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-book-open"></i>
-            <span class="item-title">SSC JE 2025 Answer Key</span>
-          </div>
-          <p class="item-subtitle">Released: Aug 8, 2025</p>
-          <p class="item-description">Download SSC JE 2025 official answer key for all sets.</p>
-          <a href="https://ssc.nic.in/" class="item-link" target="_blank">SSC Answer Key</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">LATEST</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-book-open"></i>
-            <span class="item-title">GATE 2025 Answer Key</span>
-          </div>
-          <p class="item-subtitle">Released: June 20, 2025</p>
-          <p class="item-description">GATE 2025 answer key and solutions now available.</p>
-          <a href="https://gate.iitk.ac.in/" class="item-link" target="_blank">GATE Answer Key</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-book"></i>
-            <span class="item-title">UPSC Engineering 2025 Answer Key</span>
-          </div>
-          <p class="item-subtitle">Released: July 22, 2025</p>
-          <p class="item-description">Official UPSC Engineering Services answer key 2025 released.</p>
-          <a href="https://upsc.gov.in/" class="item-link" target="_blank">UPSC Answer Key</a>
-        </div>
-        <div class="panel-item">
-          <span class="badge">NEW</span>
-          <div class="item-header">
-            <span class="new-label">NEW</span>
-            <i class="fas fa-book"></i>
-            <span class="item-title">NEET 2025 Answer Key</span>
-          </div>
-          <p class="item-subtitle">Released: July 30, 2025</p>
-          <p class="item-description">NEET 2025 answer key released for all codes.</p>
-          <a href="https://ntaneet.nic.in/" class="item-link" target="_blank">NEET Answer Key</a>
-        </div>
-      </div>
-    </div>
-    <!-- Panel Footer -->
-    <div class="panel-footer">
-      <p>
-        <em><i class="fas fa-info-circle"></i> Get the latest official notifications, results, admit cards, and answer keys for all major engineering and medical exams. Professional. Reliable. Fast.</em>
-      </p>
-      <p>© 2025 Engineering Exam Updates. All rights reserved.</p>
-    </div>
-  </div>
-  <script>
-    // Animated Board Marquee (dynamic, rotates messages)
-    const marqueeMsgs = [
-      "SSC JE 2025 Notification OUT! | GATE 2026 Application Open | NEET 2025 Answer Key Available | UPSC Engineering Results Announced | Stay tuned for latest updates 🚀",
-      "GATE 2026 Registration LIVE | SSC JE 2025 Results Released | Download Admit Cards for NEET/UPSC | Stay ahead with all updates!",
-      "UPSC Engineering Services 2025: Results & Answer Key Published | NEET 2025 Results Announced | Check Now!",
-      "All latest exam notifications, admit cards, and results at a glance. Bookmark this page for instant alerts!"
-    ];
-    let msgIdx = 0;
-    function updateMarquee() {
-      document.getElementById("marqueeText").innerText = marqueeMsgs[msgIdx];
-      msgIdx = (msgIdx + 1) % marqueeMsgs.length;
-    }
-    setInterval(updateMarquee, 9000);
 
-    // Open the filter modal automatically on page load
-    window.addEventListener('DOMContentLoaded', function() {
-      openFilterModal();
-    });
-    // Filter Modal Functions
-    function openFilterModal() {
-      document.getElementById('filterModal').classList.add('show');
-    }
-    function closeFilterModal(event) {
-      if (!event || event.target.id === 'filterModal' || event.target.classList.contains('close-modal')) {
-        document.getElementById('filterModal').classList.remove('show');
-      }
-    }
-    function applyFilter(option) {
-      var grid = document.getElementById('gridContainer');
-      var colNotifs = document.getElementById('column-notifications');
-      var colResults = document.getElementById('column-results');
-      var colAdmit = document.getElementById('column-admitcards');
-      var colAnswer = document.getElementById('column-answerkeys');
-      colNotifs.style.display = "block";
-      colResults.style.display = "block";
-      colAdmit.style.display = "block";
-      colAnswer.style.display = "block";
-      grid.style.gridTemplateColumns = "repeat(4, 1fr)";
-      if (option === "notifications") {
-        colResults.style.display = "none";
-        colAdmit.style.display = "none";
-        colAnswer.style.display = "none";
-        grid.style.gridTemplateColumns = "1fr";
-      } else if (option === "results") {
-        colNotifs.style.display = "none";
-        colAdmit.style.display = "none";
-        colAnswer.style.display = "none";
-        grid.style.gridTemplateColumns = "1fr";
-      } else if (option === "admitcards") {
-        colNotifs.style.display = "none";
-        colResults.style.display = "none";
-        colAnswer.style.display = "none";
-        grid.style.gridTemplateColumns = "1fr";
-      } else if (option === "answerkeys") {
-        colNotifs.style.display = "none";
-        colResults.style.display = "none";
-        colAdmit.style.display = "none";
-        grid.style.gridTemplateColumns = "1fr";
-      }
-      document.getElementById('filterModal').classList.remove('show');
-    }
-    // Keyboard shortcut: 'F' for filter modal
-    window.addEventListener('keydown', function(e) {
-      if (e.key === 'f' || e.key === 'F') {
-        openFilterModal();
-      }
-    });
-  </script>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-title">
+                <div class="header-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div>
+                    <h1>Latest Updates</h1>
+                    <p class="header-subtitle">Stay updated with latest exams, jobs, results & answer keys</p>
+                </div>
+            </div>
+            <div class="last-updated">
+                <i class="fas fa-clock"></i> Last updated: <span id="lastUpdated">Aug 23, 2025 - 2:30 PM</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Live Updates Board -->
+    <div class="updates-board">
+        <div class="board-container">
+            <div class="board-header">
+                <i class="fas fa-bolt board-icon"></i>
+                <span class="board-title">🔥 Breaking Updates</span>
+            </div>
+            <div class="updates-list">
+                <div class="update-item">
+                    <div class="update-date">Aug 25</div>
+                    <div class="update-text">GATE 2026 Application Form starts from July 25th - Don't miss the deadline!</div>
+                    <div class="update-badge badge-new">NEW</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-date">Oct 15</div>
+                    <div class="update-text">SSC JE 2026 Exam scheduled for October - Notification expected soon</div>
+                    <div class="update-badge badge-open">UPCOMING</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-date">Aug 20</div>
+                    <div class="update-text">NEET 2025 Results declared - Check your scores and counselling dates</div>
+                    <div class="update-badge badge-result">RESULT</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-date">Aug 18</div>
+                    <div class="update-text">UPSC Engineering Services Final Results out - Merit list published</div>
+                    <div class="update-badge badge-result">LIVE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-section">
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-globe"></i> All Updates
+            </button>
+            <button class="filter-btn" data-filter="notifications">
+                <i class="fas fa-bullhorn"></i> Exam Notifications
+            </button>
+            <button class="filter-btn" data-filter="results">
+                <i class="fas fa-chart-line"></i> Results
+            </button>
+            <button class="filter-btn" data-filter="admit-cards">
+                <i class="fas fa-id-card"></i> Admit Cards
+            </button>
+            <button class="filter-btn" data-filter="answer-keys">
+                <i class="fas fa-key"></i> Answer Keys
+            </button>
+            <button class="filter-btn" data-filter="jobs">
+                <i class="fas fa-briefcase"></i> Jobs & Internships
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="cards-grid" id="cardsGrid">
+            
+            <!-- Exam Notifications -->
+            <div class="exam-card" data-category="notifications">
+                <div class="card-header">
+                    <div class="card-icon icon-notification">
+                        <i class="fas fa-megaphone"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">SSC JE 2025 Notification</h3>
+                        <p class="card-subtitle">Staff Selection Commission</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    Official notification for SSC Junior Engineer 2025 released. Check eligibility, exam pattern, and application process details.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-new">🔥 Hot</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Aug 2, 2025</span>
+                </div>
+                <a href="https://ssc.nic.in/" target="_blank" class="card-action">
+                    <i class="fas fa-external-link-alt"></i> View Notification
+                </a>
+            </div>
+
+            <div class="exam-card" data-category="notifications">
+                <div class="card-header">
+                    <div class="card-icon icon-notification">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">GATE 2026 Registration</h3>
+                        <p class="card-subtitle">Graduate Aptitude Test</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    GATE 2026 registration is now open! Apply before the deadline and secure your future in top engineering institutes.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-open">✅ Open</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> July 30, 2025</span>
+                </div>
+                <a href="https://gate.iitk.ac.in/" target="_blank" class="card-action">
+                    <i class="fas fa-edit"></i> Apply Now
+                </a>
+            </div>
+
+            <!-- Results -->
+            <div class="exam-card" data-category="results">
+                <div class="card-header">
+                    <div class="card-icon icon-result">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">SSC JE 2025 Results</h3>
+                        <p class="card-subtitle">Junior Engineer Results</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    SSC JE 2025 results declared! Check your scorecard, cutoff marks, and download merit list for next steps.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-live">⚡ Live</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Aug 7, 2025</span>
+                </div>
+                <a href="https://ssc.nic.in/" target="_blank" class="card-action">
+                    <i class="fas fa-download"></i> Check Result
+                </a>
+            </div>
+
+            <div class="exam-card" data-category="results">
+                <div class="card-header">
+                    <div class="card-icon icon-result">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">NEET 2025 Results</h3>
+                        <p class="card-subtitle">Medical Entrance Exam</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    NEET 2025 results announced with category-wise cutoffs. Check your rank and counselling schedule details.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-released">🎯 Released</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Aug 20, 2025</span>
+                </div>
+                <a href="https://ntaneet.nic.in/" target="_blank" class="card-action">
+                    <i class="fas fa-search"></i> View Results
+                </a>
+            </div>
+
+            <!-- Admit Cards -->
+            <div class="exam-card" data-category="admit-cards">
+                <div class="card-header">
+                    <div class="card-icon icon-admit">
+                        <i class="fas fa-id-badge"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">GATE 2026 Admit Card</h3>
+                        <p class="card-subtitle">Hall Ticket Download</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    GATE 2026 admit cards available for download. Check exam center, timing, and important instructions.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-open">📋 Available</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Dec 10, 2025</span>
+                </div>
+                <a href="https://gate.iitk.ac.in/" target="_blank" class="card-action">
+                    <i class="fas fa-download"></i> Download Admit Card
+                </a>
+            </div>
+
+            <div class="exam-card" data-category="admit-cards">
+                <div class="card-header">
+                    <div class="card-icon icon-admit">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">JEE Advanced 2025</h3>
+                        <p class="card-subtitle">Admit Card Release</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    JEE Advanced 2025 hall tickets now available. Download with photo verification and exam guidelines.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-new">🆕 New</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> May 15, 2025</span>
+                </div>
+                <a href="https://jeeadv.ac.in/" target="_blank" class="card-action">
+                    <i class="fas fa-print"></i> Get Hall Ticket
+                </a>
+            </div>
+
+            <!-- Answer Keys -->
+            <div class="exam-card" data-category="answer-keys">
+                <div class="card-header">
+                    <div class="card-icon icon-answer">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">NEET 2025 Answer Key</h3>
+                        <p class="card-subtitle">Official Solutions</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    NEET 2025 official answer key released for all question paper codes. Download solutions and calculate expected score.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-released">🔓 Released</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> July 30, 2025</span>
+                </div>
+                <a href="https://ntaneet.nic.in/" target="_blank" class="card-action">
+                    <i class="fas fa-file-download"></i> Download Answer Key
+                </a>
+            </div>
+
+            <div class="exam-card" data-category="answer-keys">
+                <div class="card-header">
+                    <div class="card-icon icon-answer">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">JEE Main 2025 Answer Key</h3>
+                        <p class="card-subtitle">Session 1 Solutions</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    JEE Main 2025 Session 1 answer key with detailed solutions. Check correct answers for Physics, Chemistry & Mathematics.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-live">📊 Live</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Feb 5, 2025</span>
+                </div>
+                <a href="https://jeemain.nta.nic.in/" target="_blank" class="card-action">
+                    <i class="fas fa-calculator"></i> View Solutions
+                </a>
+            </div>
+
+            <!-- Jobs & Internships -->
+            <div class="exam-card" data-category="jobs">
+                <div class="card-header">
+                    <div class="card-icon icon-notification">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">DRDO Scientist Recruitment</h3>
+                        <p class="card-subtitle">Defence Research & Development</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    DRDO recruiting Scientist 'B' for various engineering disciplines. Great opportunity for fresh graduates.
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-new">💼 New Opening</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Aug 15, 2025</span>
+                </div>
+                <a href="https://drdo.gov.in/" target="_blank" class="card-action">
+                    <i class="fas fa-arrow-right"></i> Apply for Job
+                </a>
+            </div>
+
+            <div class="exam-card" data-category="jobs">
+                <div class="card-header">
+                    <div class="card-icon icon-notification">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">Google Summer Internship</h3>
+                        <p class="card-subtitle">Software Engineering Intern</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    Google opening summer internship applications for software engineering students. Great learning opportunity!
+                </div>
+                <div class="card-meta">
+                    <span class="status-badge status-open">🚀 Internship</span>
+                    <span class="card-date"><i class="fas fa-calendar"></i> Aug 10, 2025</span>
+                </div>
+                <a href="https://careers.google.com/" target="_blank" class="card-action">
+                    <i class="fas fa-external-link-alt"></i> Apply Now
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Update timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('lastUpdated').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Filter functionality
+        function initializeFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.exam-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Show loading
+                    showLoading();
+                    
+                    setTimeout(() => {
+                        // Filter cards
+                        cards.forEach(card => {
+                            if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                        hideLoading();
+                    }, 300);
+                });
+            });
+        }
+
+        // Loading functions
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        // Auto-refresh updates board
+        function refreshUpdatesBoard() {
+            const updateItems = document.querySelectorAll('.update-item');
+            updateItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        item.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTimestamp();
+            initializeFilters();
+            
+            // Update timestamp every minute
+            setInterval(updateTimestamp, 60000);
+            
+            // Refresh updates board every 5 minutes
+            setInterval(refreshUpdatesBoard, 300000);
+            
+            // Add smooth animations
+            const cards = document.querySelectorAll('.exam-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 50}ms`;
+            });
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="all"]').click();
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="notifications"]').click();
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="results"]').click();
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="admit-cards"]').click();
+                        break;
+                    case '5':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="answer-keys"]').click();
+                        break;
+                    case '6':
+                        e.preventDefault();
+                        document.querySelector('[data-filter="jobs"]').click();
+                        break;
+                }
+            }
+        });
+
+        // Card click analytics (optional)
+        function trackCardClick(cardTitle, category) {
+            console.log(`Card clicked: ${cardTitle} in category: ${category}`);
+            // Here you can add analytics tracking code
+        }
+
+        // Add click tracking to cards
+        document.querySelectorAll('.exam-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.card-action')) {
+                    const title = card.querySelector('.card-title').textContent;
+                    const category = card.getAttribute('data-category');
+                    trackCardClick(title, category);
+                }
+            });
+        });
+
+        // Search functionality (if needed in future)
+        function addSearchFunctionality() {
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.placeholder = 'Search exams, jobs, results...';
+            searchInput.className = 'search-input';
+            
+            // Add search styles
+            const searchStyles = `
+                .search-input {
+                    width: 100%;
+                    max-width: 400px;
+                    padding: 0.75rem 1rem;
+                    border: 2px solid var(--border);
+                    border-radius: 25px;
+                    font-size: 1rem;
+                    background: var(--bg-white);
+                    transition: all 0.2s ease;
+                }
+                .search-input:focus {
+                    outline: none;
+                    border-color: var(--primary);
+                    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+                }
+            `;
+            
+            // Uncomment below to add search functionality
+            /*
+            const style = document.createElement('style');
+            style.textContent = searchStyles;
+            document.head.appendChild(style);
+            
+            const filterSection = document.querySelector('.filter-section');
+            const searchContainer = document.createElement('div');
+            searchContainer.style.cssText = 'display: flex; justify-content: center; margin-bottom: 1rem;';
+            searchContainer.appendChild(searchInput);
+            filterSection.insertBefore(searchContainer, filterSection.firstChild);
+            */
+        }
+
+        // Performance optimization
+        function optimizePerformance() {
+            // Lazy load images if any are added
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.classList.remove('lazy');
+                                observer.unobserve(img);
+                            }
+                        }
+                    });
+                });
+
+                // Observe all images with data-src attribute
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Debounce scroll events if needed
+            let scrollTimer;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(() => {
+                    // Handle scroll events here if needed
+                }, 100);
+            });
+        }
+
+        // Initialize performance optimizations
+        optimizePerformance();
+
+        // PWA features (if converting to PWA)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Uncomment to register service worker
+                // navigator.serviceWorker.register('/sw.js');
+            });
+        }
+
+        // Theme toggle (for future dark mode)
+        function initializeThemeToggle() {
+            // This can be implemented when dark mode is needed
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            prefersDark.addEventListener('change', (e) => {
+                if (e.matches) {
+                    document.body.classList.add('dark-theme');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                }
+            });
+        }
+
+        // Accessibility improvements
+        function improveAccessibility() {
+            // Add keyboard navigation for cards
+            document.querySelectorAll('.exam-card').forEach((card, index) => {
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'article');
+                card.setAttribute('aria-label', `Exam update: ${card.querySelector('.card-title').textContent}`);
+                
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        const link = card.querySelector('.card-action');
+                        if (link) {
+                            link.click();
+                        }
+                    }
+                });
+            });
+
+            // Add ARIA labels to filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const filterType = btn.getAttribute('data-filter');
+                btn.setAttribute('aria-label', `Filter by ${filterType}`);
+            });
+        }
+
+        // Initialize accessibility features
+        improveAccessibility();
+
+        // Error handling for external links
+        function handleExternalLinks() {
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    try {
+                        // Add rel="noopener noreferrer" for security
+                        link.setAttribute('rel', 'noopener noreferrer');
+                    } catch (error) {
+                        console.error('Error handling external link:', error);
+                    }
+                });
+            });
+        }
+
+        handleExternalLinks();
+    </script>
 </body>
 </html>
