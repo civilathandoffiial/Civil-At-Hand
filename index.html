@@ -786,7 +786,24 @@
                         <i class="fas fa-tags mr-1"></i>Discount
                     </a>
                     <a href="carrer.html" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Career</a>
-                    <a href="service.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Services</a>
+                    <a href="service.html" target="_blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Services</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-[var(--primary)]" aria-label="Open menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-300">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-[var(--primary)] focus:outline-none" aria-label="Close menu">
+                <i class="fas fa-times text-3xl"></i>
+            </button>
+            <a href="updates.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Updates</a>
+            <a href="material.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Material</a>
+            <a href="discount.html" target="_blank" class="text-[var(--discount-color)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">
+                <i class="fas fa-tags mr-2"></i>Discount
+            </a>
+            <a href="carrer.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Career</a>
+            <a href="service.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Services</a>
         </div>
     </header>
     
@@ -1159,11 +1176,40 @@
                 Frequently Asked Questions
             </h2>
             <div class="faq-list max-w-4xl mx-auto">
+                <div>
                     <div class="faq-question">
                         <i class="fas fa-graduation-cap mr-3 text-[var(--accent2)]"></i>
                         Is Civil At Hand suitable for all civil engineering exams?
                     </div>
                     <div class="faq-answer">Yes! We cover all major civil engineering competitive exams including GATE, SSC JE, RRB JE, UPSC, State PSCs, and private company recruitment tests. Our materials are curated by experts and updated according to the latest syllabus and exam patterns.</div>
+                </div>
+                <div>
+                    <div class="faq-question">
+                        <i class="fas fa-question-circle mr-3 text-[var(--accent2)]"></i>
+                        How can Civil At Hand help me in my civil engineering journey?
+                    </div>
+                    <div class="faq-answer">Civil At Hand provides the latest updates on exams, results, and jobs, along with curated study materials and career guidance. Our platform is designed to support both students and professionals with reliable resources and expert assistance. We offer comprehensive notes, previous papers, discount deals, and personalized career advice.</div>
+                </div>
+                <div>
+                    <div class="faq-question">
+                        <i class="fas fa-book mr-3 text-[var(--accent2)]"></i>
+                        How do I access study material and updates on the website?
+                    </div>
+                    <div class="faq-answer">Simply visit our <a href="material.html" target="_blank">Material</a> and <a href="updates.html" target="_blank">Updates</a> sections for the latest content, notes, and notifications. All resources are regularly updated and organized by subjects and exam types. You can also subscribe to our newsletter for instant updates.</div>
+                </div>
+                <div>
+                    <div class="faq-question">
+                        <i class="fas fa-tags mr-3 text-[var(--accent2)]"></i>
+                        How can I avail discounts on educational platforms?
+                    </div>
+                    <div class="faq-answer">Check our <a href="discount.html" target="_blank">Discount</a> section for exclusive deals on Physics Wallah, textbooks, online courses, and test series. We regularly update these offers and negotiate special rates for our community members. Follow us on social media for flash sales and limited-time offers.</div>
+                </div>
+                <div>
+                    <div class="faq-question">
+                        <i class="fas fa-envelope mr-3 text-[var(--accent2)]"></i>
+                        How can I contact Civil At Hand for support or project collaboration?
+                    </div>
+                    <div class="faq-answer">You can fill our <a href="https://forms.gle/qpMWJPeomKtn4sLC9" target="_blank">Get a Quote</a> form or email us directly at <a href="mailto:civilathandofficial@gmail.com">civilathandofficial@gmail.com</a>. We respond quickly to all queries and project requests. You can also reach us through our social media channels for quick assistance.</div>
                 </div>
             </div>
         </section>
@@ -1305,15 +1351,17 @@
             }
         }
         
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        closeMobileMenu.addEventListener('click', toggleMobileMenu);
+        if (mobileMenuButton) mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        if (closeMobileMenu) closeMobileMenu.addEventListener('click', toggleMobileMenu);
 
         // Close mobile menu when clicking outside
-        mobileMenu.addEventListener('click', function(e) {
-            if (e.target === mobileMenu) {
-                toggleMobileMenu();
-            }
-        });
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    toggleMobileMenu();
+                }
+            });
+        }
 
         // Enhanced Scroll Effects
         let ticking = false;
@@ -1324,17 +1372,21 @@
             const scrollBtn = document.getElementById('scrollTopBtn');
             
             // Navbar scroll effect
-            if (scrolled > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+            if (navbar) {
+                if (scrolled > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
             }
             
             // Scroll to top button
-            if (scrolled > 300) {
-                scrollBtn.classList.add('visible');
-            } else {
-                scrollBtn.classList.remove('visible');
+            if (scrollBtn) {
+                if (scrolled > 300) {
+                    scrollBtn.classList.add('visible');
+                } else {
+                    scrollBtn.classList.remove('visible');
+                }
             }
             
             ticking = false;
@@ -1348,18 +1400,21 @@
         });
 
         // Smooth Scroll to Top with Animation
-        document.getElementById('scrollTopBtn').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        if (scrollTopBtn) {
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                
+                // Add rocket launch effect
+                this.style.transform = 'scale(0.8) rotate(45deg)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
             });
-            
-            // Add rocket launch effect
-            this.style.transform = 'scale(0.8) rotate(45deg)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-        });
+        }
 
         // Enhanced Section Reveal Animation with Intersection Observer
         const revealElements = document.querySelectorAll('.reveal-on-scroll');
@@ -1480,18 +1535,20 @@
         // Performance Optimizations
         const lazyImages = document.querySelectorAll('img[data-src]');
         
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('image-loading');
-                    observer.unobserve(img);
-                }
+        if (lazyImages.length > 0) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('image-loading');
+                        observer.unobserve(img);
+                    }
+                });
             });
-        });
 
-        lazyImages.forEach(img => imageObserver.observe(img));
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
 
         // Add Easter Egg - Konami Code
         let konamiCode = [];
@@ -1615,49 +1672,3 @@
     </script>
 </body>
 </html>
-                    <div class="faq-question">
-                        <i class="fas fa-question-circle mr-3 text-[var(--accent2)]"></i>
-                        How can Civil At Hand help me in my civil engineering journey?
-                    </div>
-                    <div class="faq-answer">Civil At Hand provides the latest updates on exams, results, and jobs, along with curated study materials and career guidance. Our platform is designed to support both students and professionals with reliable resources and expert assistance. We offer comprehensive notes, previous papers, discount deals, and personalized career advice.</div>
-                </div>
-                <div>
-                    <div class="faq-question">
-                        <i class="fas fa-book mr-3 text-[var(--accent2)]"></i>
-                        How do I access study material and updates on the website?
-                    </div>
-                    <div class="faq-answer">Simply visit our <a href="material.html" target="_blank">Material</a> and <a href="updates.html" target="_blank">Updates</a> sections for the latest content, notes, and notifications. All resources are regularly updated and organized by subjects and exam types. You can also subscribe to our newsletter for instant updates.</div>
-                </div>
-                <div>
-                    <div class="faq-question">
-                        <i class="fas fa-tags mr-3 text-[var(--accent2)]"></i>
-                        How can I avail discounts on educational platforms?
-                    </div>
-                    <div class="faq-answer">Check our <a href="discount.html" target="_blank">Discount</a> section for exclusive deals on Physics Wallah, textbooks, online courses, and test series. We regularly update these offers and negotiate special rates for our community members. Follow us on social media for flash sales and limited-time offers.</div>
-                </div>
-                <div>
-                    <div class="faq-question">
-                        <i class="fas fa-envelope mr-3 text-[var(--accent2)]"></i>
-                        How can I contact Civil At Hand for support or project collaboration?
-                    </div>
-                    <div class="faq-answer">You can fill our <a href="https://forms.gle/qpMWJPeomKtn4sLC9" target="_blank">Get a Quote</a> form or email us directly at <a href="mailto:civilathandofficial@gmail.com">civilathandofficial@gmail.com</a>. We respond quickly to all queries and project requests. You can also reach us through our social media channels for quick assistance.</div>
-                </div>
-                <div>
-                    blank" class="nav-link-hover text-lg font-medium text-[var(--primary)]">Services</a>
-                </div>
-                <button id="mobile-menu-button" class="md:hidden focus:outline-none text-[var(--primary)]" aria-label="Open menu">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-8 translate-x-full transition-transform duration-300">
-            <button id="close-mobile-menu" class="absolute top-6 right-6 text-[var(--primary)] focus:outline-none" aria-label="Close menu">
-                <i class="fas fa-times text-3xl"></i>
-            </button>
-            <a href="updates.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Updates</a>
-            <a href="material.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Material</a>
-            <a href="discount.html" target="_blank" class="text-[var(--discount-color)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">
-                <i class="fas fa-tags mr-2"></i>Discount
-            </a>
-            <a href="carrer.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Career</a>
-            <a href="service.html" target="_blank" class="text-[var(--primary)] text-3xl font-semibold hover:text-[var(--accent2)] transition-colors">Service</a>
