@@ -1,288 +1,383 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Our Services | Civil At Hand</title>
-    <meta name="description" content="Get your civil engineering work done by professionals. AutoCAD drafting, Revit modeling, QGIS mapping, estimation, consulting, and more.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --primary: #003366;
-            --secondary: #205081;
-            --accent: #28a745;
-            --accent2: #007bff;
-            --accent3: #f8cc00;
-            --card-bg: #fff;
-            --shadow: 0 8px 32px rgba(0,123,255,.10);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Civil At Hand | Professional Civil Engineering Services</title>
+  <meta name="description" content="The official Service Page of Civil At Hand: Get expert civil engineering work done fast. AutoCAD, Revit, QGIS, estimation, consulting, and more from a world-class startup team.">
+  <meta name="keywords" content="civil engineering services, AutoCAD, Revit, QGIS, estimation, consulting, civil engineering, startup">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            primary: "#003366",
+            accent: "#2563eb",
+            accent2: "#10b981",
+            accent3: "#fbbf24",
+            bg: "#f7fafc",
+          }
         }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e3efff 0%, #f9f9fc 100%);
-            color: #1a2236;
-        }
-        .disco-hero {
-            background: linear-gradient(120deg, #003366 0%, #205081 50%, #007bff 100%);
-            background-size: 200% 200%;
-            animation: bgMove 14s ease-in-out infinite;
-            color: #fff;
-            padding: 4rem 1rem 2.5rem 1rem;
-            text-align: center;
-            border-radius: 0 0 2.5rem 2.5rem;
-            box-shadow: 0 6px 32px rgba(40,167,69,.08), 0 1px 0 #e3f0fa;
-            position: relative;
-            overflow: hidden;
-        }
-        @keyframes bgMove {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        .disco-hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -1.6px;
-            margin-bottom: 0.7rem;
-        }
-        .disco-hero p {
-            font-size: 1.25rem;
-            opacity: .93;
-            margin-bottom: 2.2rem;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .disco-hero .cta-btn {
-            background: var(--accent2);
-            color: #fff;
-            padding: 1.1rem 2.8rem;
-            border-radius: 2.2rem;
-            font-weight: 700;
-            font-size: 1.25rem;
-            box-shadow: 0 2px 20px rgba(0,123,255,.16);
-            transition: background .18s, transform .11s;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-        .disco-hero .cta-btn:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
-        .hero-features {
-            margin-top: 2.5rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.3rem;
-        }
-        .hero-feature {
-            background: rgba(255,255,255,0.14);
-            border-radius: 1.1rem;
-            padding: 1rem 1.8rem;
-            color: #ffe066;
-            font-size: 1.05rem;
-            font-weight: 600;
-            box-shadow: 0 2px 18px rgba(0,0,0,.06);
-            backdrop-filter: blur(2px);
-            display: flex;
-            align-items: center;
-            gap: 0.6em;
-        }
-        .hero-feature i {
-            font-size: 1.3em;
-            color: #ffe066;
-        }
-        .section-title {
-            text-align: center;
-            color: var(--primary);
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 2.3rem;
-            letter-spacing: -1.1px;
-        }
-        .services-grid {
-            margin: 0 auto;
-            max-width: 1200px;
-            padding: 2.5rem 1.2rem 2.5rem 1.2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(270px,1fr));
-            gap: 2.5rem;
-        }
-        .service-card {
-            background: #fff;
-            border-radius: 1.6rem;
-            box-shadow: 0 6px 36px rgba(0,123,255,.08);
-            border: 1.5px solid #cbe4fa;
-            transition: box-shadow .26s cubic-bezier(.4,0,.2,1), transform .17s cubic-bezier(.4,0,.2,1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            position: relative;
-            padding: 2.5rem 1.5rem 2.9rem 1.5rem;
-            overflow: hidden;
-        }
-        .service-card:hover {
-            box-shadow: 0 16px 72px rgba(0,123,255,.16);
-            border-color: var(--accent2);
-            transform: translateY(-7px) scale(1.035);
-        }
-        .service-card .icon {
-            font-size: 2.8rem;
-            color: var(--accent2);
-            margin-bottom: 1.1rem;
-            transition: color .16s;
-        }
-        .service-card:hover .icon {
-            color: var(--primary);
-        }
-        .service-card .title {
-            font-weight: 700;
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: .7rem;
-            text-align: center;
-        }
-        .service-card .desc {
-            color: #4a6785;
-            font-size: 1.07rem;
-            text-align: center;
-            margin-bottom: .6rem;
-        }
-        .service-card .action {
-            color: var(--accent2);
-            font-weight: 600;
-            font-size: 1.05rem;
-            margin-top: 1.1rem;
-            letter-spacing: .02em;
-        }
-        .service-card .arrow {
-            transition: transform .14s cubic-bezier(.4,0,.2,1);
-            display: inline-block;
-        }
-        .service-card:hover .arrow {
-            transform: translateX(5px) scale(1.18);
-        }
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -120px; left: -110px;
-            width: 170px; height: 170px;
-            background: radial-gradient(circle at 30% 30%, #007bff1a 0%, #fff0 80%);
-            z-index: 0;
-            pointer-events: none;
-            transition: opacity .3s;
-        }
-        .service-card:hover::before { opacity: 0.92; }
-        /* Responsive */
-        @media (max-width: 700px) {
-            .disco-hero h1 { font-size: 2rem;}
-            .services-grid { gap: 1.2rem; }
-            .service-card { padding: 2rem 0.8rem 2.5rem 0.8rem;}
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(120deg, #e3efff 0%, #f9fafb 100%);
+      color: #1a2236;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .gradient-animate {
+      background: linear-gradient(120deg, #2563eb 0%, #10b981 50%, #fbbf24 100%);
+      background-size: 200% 200%;
+      animation: hero-gradient-move 8s ease-in-out infinite;
+      position: relative;
+    }
+    @keyframes hero-gradient-move {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.85s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes fadeInUp {
+      100% {opacity: 1;transform: none;}
+    }
+    .service-card {
+      transition: box-shadow .22s, border-color .22s, transform .16s;
+      cursor: pointer;
+      background: rgba(255,255,255,0.98);
+      border: 1.5px solid #dbeafe;
+      box-shadow: 0 6px 32px rgba(37,99,235,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:hover {
+      box-shadow: 0 16px 72px rgba(37,99,235,0.18);
+      border-color: #2563eb;
+      transform: translateY(-7px) scale(1.035);
+    }
+    .service-card .icon {
+      font-size: 2.7rem;
+      color: #2563eb;
+      transition: color .18s;
+      filter: drop-shadow(0 4px 16px #2563eb22);
+      animation: icon-pop 0.8s cubic-bezier(.4,0,.2,1) both;
+    }
+    .service-card:hover .icon {
+      color: #003366;
+      animation: icon-wiggle 0.4s;
+    }
+    @keyframes icon-pop {
+      from {transform: scale(0.7);}
+      to {transform: scale(1);}
+    }
+    @keyframes icon-wiggle {
+      10%, 90% { transform: rotate(-4deg);}
+      20%, 80% { transform: rotate(6deg);}
+      30%, 50%, 70% { transform: rotate(-8deg);}
+      40%, 60% { transform: rotate(8deg);}
+      100% { transform: none;}
+    }
+    .service-card:focus-visible {
+      outline: 2px solid #2563eb;
+      outline-offset: 2px;
+    }
+    .feature-badge {
+      background: rgba(255,255,255,0.21);
+      backdrop-filter: blur(2px);
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      margin: 0.3rem 0.25rem;
+      box-shadow: 0 2px 8px #fff1;
+      transition: background 0.3s;
+    }
+    .feature-badge:hover {
+      background: rgba(255,255,255,0.36);
+      color: #003366;
+    }
+    .floating {
+      animation: floating 5s ease-in-out infinite;
+    }
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px);}
+      50% { transform: translateY(-18px);}
+    }
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg,transparent 0%,rgba(255,255,255,0.15) 40%,rgba(255,255,255,0.30) 50%,transparent 60%);
+      transform: rotate(25deg);
+      pointer-events: none;
+      animation: shine-move 2.5s linear infinite;
+    }
+    @keyframes shine-move {
+      0% { left: -60%;}
+      100% { left: 110%;}
+    }
+    .why-panel {
+      background: linear-gradient(100deg, #e3efff 60%, #fbbf2433 100%);
+      border-radius: 2rem;
+      box-shadow: 0 10px 32px #2563eb22;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-panel::before {
+      content: "";
+      position: absolute;
+      left: -70px; top: 30px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle at 40% 40%, #2563eb13 0%, #fff0 80%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .why-panel::after {
+      content: "";
+      position: absolute;
+      right: -50px; bottom: -40px;
+      width: 110px; height: 110px;
+      background: radial-gradient(circle at 60% 60%, #10b98113 0%, #fff0 80%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .stats-glow {
+      background: linear-gradient(90deg, #2563eb55 0%, #10b98155 100%);
+      box-shadow: 0 0 30px #2563eb22;
+      border-radius: 1.2rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 2.1rem;
+      padding: 1.3rem 0;
+      letter-spacing: 0.025em;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      animation: glowpulse 3s infinite;
+    }
+    @keyframes glowpulse {
+      0%,100% { box-shadow: 0 0 30px #2563eb33;}
+      50% { box-shadow: 0 0 60px #10b98166;}
+    }
+    /* Animated checkmark for CTA */
+    .checkpop {
+      animation: checkpop 0.7s cubic-bezier(.4,.7,.6,1.2) both;
+    }
+    @keyframes checkpop {
+      0% { transform: scale(0.4); opacity:0;}
+      70% { transform: scale(1.25);}
+      100% { transform: none; opacity:1;}
+    }
+    @media (max-width:700px) {
+      .hero-title { font-size: 2.1rem !important; }
+      .services-grid { gap: 1.2rem !important; }
+      .service-card { padding: 1.2rem 0.7rem 2rem 0.7rem !important;}
+      .why-panel { border-radius: 1.1rem;}
+      .stats-glow { font-size: 1.3rem;}
+    }
+  </style>
 </head>
 <body>
-    <!-- Service Discovery Hero -->
-    <section class="disco-hero">
-        <h1>Discover Our Services</h1>
-        <p>
-            Get your <b>civil engineering work done</b> by top professionals. From AutoCAD drafting to Revit BIM modeling, QGIS mapping, estimation, and expert consulting, Civil At Hand delivers high-quality, reliable results for your academic, professional, or business needs.
+  <main>
+    <!-- HEADER -->
+    <header class="w-full py-6 px-4 text-center">
+      <div class="max-w-3xl mx-auto">
+        <div class="inline-block bg-accent/10 text-accent font-semibold px-4 py-1 rounded-full text-xs uppercase tracking-widest mb-2 shine">Service Page</div>
+        <h1 class="hero-title text-3xl md:text-5xl font-extrabold text-primary mb-2 fade-in-up" style="animation-delay:.1s">Get World-Class Civil Engineering Services</h1>
+        <p class="text-lg md:text-xl text-gray-700 mb-4 fade-in-up" style="animation-delay:.2s">
+          Civil At Hand is your startup for <b>AutoCAD, Revit, QGIS, estimation</b>, and <b>consulting</b>—trusted by professionals, students, and businesses. Fast, secure, and always expert.
         </p>
-        <a href="https://forms.gle/ZhnSwMSnCEbBSicZ8" target="_blank" class="cta-btn">Submit Your Work Request</a>
-        <div class="hero-features">
-            <div class="hero-feature"><i class="fas fa-bolt"></i> Express Delivery</div>
-            <div class="hero-feature"><i class="fas fa-user-check"></i> Verified Experts</div>
-            <div class="hero-feature"><i class="fas fa-file-alt"></i> Confidential & Secure</div>
-            <div class="hero-feature"><i class="fas fa-handshake"></i> End-to-End Support</div>
-            <div class="hero-feature"><i class="fas fa-thumbs-up"></i> 100% Satisfaction</div>
+      </div>
+    </header>
+    <!-- HERO -->
+    <section class="gradient-animate py-12 md:py-16 rounded-b-3xl shadow-xl text-white text-center relative overflow-hidden">
+      <div class="max-w-2xl mx-auto px-5 relative z-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4 fade-in-up" style="animation-delay:.3s">Let Experts Do Your Civil Work!</h2>
+        <p class="text-lg md:text-xl mb-8 opacity-95 fade-in-up" style="animation-delay:.4s">
+          Submit your requirements in one click—get your project delivered on time with 100% confidentiality and satisfaction.
+        </p>
+        <a href="https://forms.gle/ZhnSwMSnCEbBSicZ8" target="_blank" class="cta-btn fade-in-up shine" style="animation-delay:.5s">
+          <span class="mr-2"><i class="fas fa-paper-plane"></i></span>
+          Submit Your Work Request
+        </a>
+        <div class="flex flex-wrap gap-2 justify-center mt-8 fade-in-up" style="animation-delay:.6s">
+          <span class="feature-badge"><i class="fas fa-bolt mr-2"></i> Express Delivery</span>
+          <span class="feature-badge"><i class="fas fa-user-check mr-2"></i> Verified Experts</span>
+          <span class="feature-badge"><i class="fas fa-lock mr-2"></i> 100% Confidential</span>
+          <span class="feature-badge"><i class="fas fa-star mr-2"></i> 100% Satisfaction</span>
         </div>
-    </section>
-
-    <!-- Core Services Section -->
-    <section id="core-services">
-        <div class="section-title">Our Civil Engineering Work Services</div>
-        <div class="services-grid">
-            <div tabindex="0" class="service-card" data-service="autocad">
-                <div class="icon"><i class="fas fa-pencil-ruler"></i></div>
-                <div class="title">AutoCAD Drafting</div>
-                <div class="desc">
-                    Get your plans, elevations, sections, layout, and civil drawings professionally drafted in AutoCAD. Fast, accurate, and ready for submission or construction.
-                </div>
-                <div class="action">Order AutoCAD Work <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="revit">
-                <div class="icon"><i class="fab fa-autodesk"></i></div>
-                <div class="title">Revit (BIM) Modeling</div>
-                <div class="desc">
-                    BIM-ready 3D models, detailed plans, and quantity takeoff using Revit for buildings, interiors, and infrastructure—delivered as per your specifications.
-                </div>
-                <div class="action">Order Revit Modeling <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="qgis">
-                <div class="icon"><i class="fas fa-globe"></i></div>
-                <div class="title">QGIS Mapping & GIS Work</div>
-                <div class="desc">
-                    Custom GIS maps, land-use analysis, georeferencing, and project mapping using QGIS—perfect for research, planning, and reports.
-                </div>
-                <div class="action">Order GIS Work <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="estimation">
-                <div class="icon"><i class="fas fa-calculator"></i></div>
-                <div class="title">Estimation & Quantity Calculations</div>
-                <div class="desc">
-                    Get BOQ, take-offs, material estimation, and cost analysis for your project—accurate, detailed, and ready for tender or execution.
-                </div>
-                <div class="action">Order Estimation <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="consulting">
-                <div class="icon"><i class="fas fa-hand-holding-compass"></i></div>
-                <div class="title">Civil Engineering Consulting</div>
-                <div class="desc">
-                    Professional advice, proof-checking, technical review, and project support for design, site issues, documentation, or reports.
-                </div>
-                <div class="action">Request Consulting <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="material">
-                <div class="icon"><i class="fas fa-book-open"></i></div>
-                <div class="title">Academic/Project Reports & Notes</div>
-                <div class="desc">
-                    Custom written reports, technical documents, or high-quality notes for your academic or professional needs—original and formatted.
-                </div>
-                <div class="action">Order Report/Notes <span class="arrow">&rarr;</span></div>
-            </div>
-            <div tabindex="0" class="service-card" data-service="custom">
-                <div class="icon"><i class="fas fa-cogs"></i></div>
-                <div class="title">Custom Civil Work</div>
-                <div class="desc">
-                    Got a unique civil engineering requirement? Tell us what you need and we’ll deliver a solution tailored to your project.
-                </div>
-                <div class="action">Describe Your Work <span class="arrow">&rarr;</span></div>
-            </div>
+        <!-- Animated stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
+          <div class="stats-glow fade-in-up" style="animation-delay:0.7s"><span class="stat-num" data-count="470">0</span>+ Projects</div>
+          <div class="stats-glow fade-in-up" style="animation-delay:0.8s"><span class="stat-num" data-count="99">0</span>% Satisfaction</div>
+          <div class="stats-glow fade-in-up" style="animation-delay:0.9s"><span class="stat-num" data-count="35">0</span>+ Experts</div>
+          <div class="stats-glow fade-in-up" style="animation-delay:1.0s"><span class="stat-num" data-count="24">0</span>/7 Support</div>
         </div>
-        <p class="mt-8 text-center text-lg text-gray-600">All requests are handled confidentially by our expert team. <br><b class="text-[var(--accent2)]">Click any service to submit your work and get started!</b></p>
+      </div>
+      <!-- Floating SVG for visual -->
+      <svg class="absolute floating right-0 top-5 w-32 md:w-52 opacity-30 pointer-events-none" viewBox="0 0 200 200"><ellipse cx="100" cy="100" rx="80" ry="55" fill="#fff"/></svg>
+      <svg class="absolute floating left-0 bottom-0 w-28 md:w-44 opacity-20 pointer-events-none" style="animation-delay:-2s" viewBox="0 0 200 200"><ellipse cx="100" cy="100" rx="90" ry="50" fill="#fff"/></svg>
     </section>
-
-    <script>
-    // Animate all service cards to open Google Form with feedback
-    document.querySelectorAll('.service-card').forEach(function(card) {
-        card.addEventListener('click', function() {
-            card.classList.add('pulse-btn');
-            setTimeout(() => {
-                window.open('https://forms.gle/ZhnSwMSnCEbBSicZ8', '_blank');
-                card.classList.remove('pulse-btn');
-            }, 270);
+    <!-- SERVICES GRID -->
+    <section class="max-w-6xl mx-auto px-4 py-16 md:py-20">
+      <h2 class="text-center text-3xl md:text-4xl font-extrabold text-primary mb-4 fade-in-up" style="animation-delay:1.1s">Our Civil Engineering Services</h2>
+      <p class="text-center text-lg text-gray-700 mb-10 max-w-2xl mx-auto fade-in-up" style="animation-delay:1.2s">
+        Order any civil work below—delivered by certified professionals, tailored to your needs.
+      </p>
+      <div class="services-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-10">
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.3s" data-service="autocad">
+          <div class="icon mb-4"><i class="fas fa-pencil-ruler"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">AutoCAD Drafting</h3>
+          <p class="text-center text-gray-600 mb-2">Plans, elevations, sections, layouts, 2D/3D civil drawings—submission or construction ready.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Order AutoCAD Work &rarr;</span>
+        </div>
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.4s" data-service="revit">
+          <div class="icon mb-4"><i class="fab fa-autodesk"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">Revit (BIM) Modeling</h3>
+          <p class="text-center text-gray-600 mb-2">BIM-ready 3D models, detailed plans, and quantity takeoffs—buildings, interiors, infrastructure.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Order Revit Modeling &rarr;</span>
+        </div>
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.5s" data-service="qgis">
+          <div class="icon mb-4"><i class="fas fa-globe"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">QGIS Mapping & GIS</h3>
+          <p class="text-center text-gray-600 mb-2">Custom GIS maps, spatial analysis, georeferencing, project mapping for research and reports.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Order GIS Work &rarr;</span>
+        </div>
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.6s" data-service="estimation">
+          <div class="icon mb-4"><i class="fas fa-calculator"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">Estimation & BOQ</h3>
+          <p class="text-center text-gray-600 mb-2">BOQ, take-offs, material estimation, and cost analysis—ready for tender or execution.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Order Estimation &rarr;</span>
+        </div>
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.7s" data-service="consulting">
+          <div class="icon mb-4"><i class="fas fa-hand-holding-compass"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">Civil Consulting</h3>
+          <p class="text-center text-gray-600 mb-2">Professional advice, technical review, project support from experienced civil engineers.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Request Consulting &rarr;</span>
+        </div>
+        <div tabindex="0" class="service-card rounded-2xl p-8 flex flex-col items-center fade-in-up shine group" style="animation-delay:1.8s" data-service="custom">
+          <div class="icon mb-4"><i class="fas fa-cogs"></i></div>
+          <h3 class="font-bold text-lg text-primary mb-2">Custom Civil Work</h3>
+          <p class="text-center text-gray-600 mb-2">Have a unique requirement? Our startup delivers tailored civil solutions for any project.</p>
+          <span class="mt-3 text-accent font-semibold group-hover:underline">Describe Your Work &rarr;</span>
+        </div>
+      </div>
+      <p class="mt-10 text-center text-gray-700 text-base max-w-xl mx-auto fade-in-up" style="animation-delay:2.0s">
+        <b class="text-accent">Click any service</b> to submit your work. All requests are confidentially handled by our expert team.
+      </p>
+    </section>
+    <!-- WHY CHOOSE CIVIL AT HAND -->
+    <section class="why-panel py-16 md:py-20 max-w-4xl mx-auto mb-10 mt-8 shadow-lg fade-in-up" style="animation-delay:2.1s">
+      <div class="px-6 md:px-12 relative z-10">
+        <h2 class="text-center text-3xl md:text-4xl font-bold text-primary mb-6">Why Choose Civil At Hand?</h2>
+        <p class="text-center text-lg text-gray-800 mb-8">
+          We are a team of experienced civil engineers and technical professionals dedicated to delivering high-quality engineering solutions with unmatched precision and reliability.
+        </p>
+        <div class="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12 mb-10">
+          <div class="flex items-start gap-3 fade-in-up" style="animation-delay:2.2s">
+            <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white text-2xl"><i class="fas fa-user-tie"></i></div>
+            <div>
+              <h3 class="font-bold text-primary mb-1">Expert Team</h3>
+              <p class="text-gray-700 text-base">Certified engineers with years of industry experience and proven track record.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 fade-in-up" style="animation-delay:2.3s">
+            <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white text-2xl"><i class="fas fa-clock"></i></div>
+            <div>
+              <h3 class="font-bold text-primary mb-1">Fast Delivery</h3>
+              <p class="text-gray-700 text-base">Quick turnaround times without compromising on quality and accuracy.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3 fade-in-up" style="animation-delay:2.4s">
+            <div class="w-12 h-12 bg-accent rounded-xl flex items-center justify-center text-white text-2xl"><i class="fas fa-shield-alt"></i></div>
+            <div>
+              <h3 class="font-bold text-primary mb-1">100% Confidential</h3>
+              <p class="text-gray-700 text-base">Your projects and data are completely secure with our confidentiality guarantee.</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-primary/95 rounded-2xl py-7 px-4 md:px-10 text-white text-center shadow-lg mt-6 fade-in-up" style="animation-delay:2.5s">
+          <h3 class="text-2xl font-bold mb-2">Ready to Get Started?
+            <span class="ml-2 text-accent3 checkpop"><i class="fas fa-check-circle"></i></span>
+          </h3>
+          <p class="mb-4 text-white/90">Submit your project requirements and get a personalized quote within 24 hours.</p>
+          <a href="https://forms.gle/ZhnSwMSnCEbBSicZ8" target="_blank" class="inline-block bg-accent3 text-primary font-bold px-8 py-3 rounded-full shadow hover:bg-yellow-400 focus-visible:outline-2 focus-visible:outline-primary transition-all shine">
+            <span class="mr-2"><i class="fas fa-paper-plane"></i></span>
+            Submit Project Request
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Fade-in on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeEls = document.querySelectorAll('.fade-in-up');
+      fadeEls.forEach((el, i) => { el.style.animationDelay = el.style.animationDelay || (0.1*i) + 's';});
+      const reveal = () => {
+        fadeEls.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if(rect.top < window.innerHeight - 60) el.style.animationPlayState = 'running';
         });
-        card.addEventListener('keydown', function(e){
-            if(e.key === 'Enter' || e.key === ' ') {
-                card.click();
-            }
-        });
+      };
+      window.addEventListener('scroll', reveal);
+      reveal();
     });
-    </script>
+    // Open form on card click/enter
+    document.querySelectorAll('.service-card').forEach(function(card) {
+      card.addEventListener('click', function() {
+        card.classList.add('ring-2', 'ring-accent');
+        setTimeout(() => {
+          window.open('https://forms.gle/ZhnSwMSnCEbBSicZ8', '_blank');
+          card.classList.remove('ring-2', 'ring-accent');
+        }, 160);
+      });
+      card.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' ') {
+          card.click();
+        }
+      });
+    });
+    // Animated counters for stats
+    function animateStats() {
+      document.querySelectorAll('.stat-num').forEach(function(node){
+        const end = +node.getAttribute('data-count');
+        let start = 0;
+        const duration = 1050 + Math.random()*800;
+        const step = Math.ceil(end/50);
+        const t = duration/Math.ceil(end/step);
+        function run() {
+          start += step;
+          node.textContent = (start<end)?start:end;
+          if(start < end) setTimeout(run, t);
+        }
+        run();
+      });
+    }
+    window.addEventListener('DOMContentLoaded', animateStats);
+  </script>
 </body>
 </html>
